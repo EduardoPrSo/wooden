@@ -1,0 +1,16 @@
+.carouselContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 100vw;
+}
+
+.carouselStyle{
+    height: 70vh;
+    width: 100%;
+}
+
+.nextArrow{
+    color: red;
+}

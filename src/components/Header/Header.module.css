@@ -1,0 +1,89 @@
+.classContainer{
+    width: 100vw;
+    height: 9vh;
+    background-color: #F9F6F2;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 5px 0 0 0;
+    position: sticky;
+    z-index: 999;
+    top: 0;
+}
+
+.options{
+    width: 100vw;
+    height: 6vh;
+    background-color: #F9F6F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #fc8f00;
+}
+
+.options p{
+    font-size: 20px;
+    font-weight: 300;
+    padding: 0 15px 0 15px;
+    color: grey;
+    transition: .3s;
+}
+
+.options p:hover{
+    cursor: pointer;
+    color: #fc8f00;
+    transition: color .3s ease-in-out;
+}
+
+.headerIcons, .dropdownIcon{
+    color: grey;
+    transition: .3s;
+    margin: 0;
+}
+
+.headerIcons:hover, .dropdownIcon:hover{
+    cursor: pointer;
+    color: #fc8f00;
+    transition: color .3s ease-in-out;
+}
+
+.dropdownContainer{
+    position: relative;
+    width: auto;
+    height: auto;
+}
+
+.dropdown{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    background-color: #F9F6F2;
+    width: 110px;
+    height: auto;
+    padding: 20%;
+    box-shadow: 5px 5px 20px #808080;
+    border-radius: 5px;
+    color: grey;
+    left: -350%;
+}
+
+.dropdownIcon:hover + .dropdown{
+    display: flex;
+}
+
+.dropdown:hover{
+    display: flex;
+}
+
+.dropdown a, .dropdown p{
+    color: grey;
+    margin: 2.5px 0 2.5px 5px;
+    transition: color .3s ease-in-out;
+}
+
+.dropdown a, .dropdown p:hover{
+    cursor: pointer;
+    color: #fc8f00;
+    transition: color .3s ease-in-out;
+}

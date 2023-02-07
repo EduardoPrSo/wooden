@@ -1,0 +1,11 @@
+.classContainer{
+    width: 100vw;
+    height: 20vh;
+    background-color: #fc8f00;
+    background-image: url('http://assoalhosespacofelgueiras.com.br/imagens/madeiras/ipe1_big.jpg');
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 5px 0 0 0;
+    bottom: 0;
+}
