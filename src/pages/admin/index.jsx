@@ -4,11 +4,11 @@ import Footer from '@/components/Footer/Footer'
 
 import axios from 'axios'
 
-export default function Admin({data}) {
+export default function Admin({carouselImages}) {
     return (
         <>
             <Header />
-            <AdminPage images={data}/>
+            <AdminPage images={carouselImages}/>
             {/* <Footer /> */}
         </>
     )
@@ -16,11 +16,11 @@ export default function Admin({data}) {
 
 export const getServerSideProps = async () => {
     const response = await axios.get('http://localhost:3000/api/carousel_images/getCarouselImages' || 'https://woodenmarcenaria.com.br/api/carousel_images/getCarouselImages');
-    const data = response.data;
+    const carouselImages = response.data;
 
     return {
         props: {
-            data
+            carouselImages
         }
     }
 }
