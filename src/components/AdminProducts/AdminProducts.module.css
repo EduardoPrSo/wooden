@@ -103,3 +103,15 @@
     transition: .3s;
     padding: 30%;
 }
+
+.submitButton:hover{
+    cursor: pointer;
+    color: #fc8f00;
+    transition: .3s;
+}
+
+.cancelButton:hover{
+    cursor: pointer;
+    color: red;
+    transition: .3s;
+}

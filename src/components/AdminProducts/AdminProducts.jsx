@@ -50,6 +50,10 @@ export default function AdminProducts () {
                         <input type="text" name="cathegory" placeholder="Categoria"/>
                         <input type="text" name="term" placeholder="Prazo"/>
                         <input type="text" name="material" placeholder="Material"/>
+                        <div style={{display: 'flex', width: '100%', alignItems: 'center'}}>
+                            <p style={{fontSize: 'small', width: '80%', color: 'grey'}}>Página Principal?</p>
+                            <input style={{width: '10%'}} type="checkbox" name="onMain" id="" />
+                        </div>
                     </div>
                     <div className={styles.formButtons}>
                         <div className={styles.submitButton}><i className="fa-solid fa-upload"></i></div>
