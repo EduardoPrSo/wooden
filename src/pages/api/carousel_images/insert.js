@@ -6,7 +6,7 @@ export default async function hendler(req, res){
 
         if (method === 'POST') {
             const { db } = await connectToDatabase();
-            await db.collection('carousel_images').insertOne({image_id: body.id, url: body.url})
+            await db.collection('carousel_images').insertOne({url: body.url})
             res.status(200).json({ message: 'Success' });
         } else {
             res.status(400).json({ message: 'Method not allowed' });
