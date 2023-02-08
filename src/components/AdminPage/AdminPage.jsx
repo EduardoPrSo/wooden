@@ -1,15 +1,30 @@
 import styles from './AdminPage.module.css';
 import { upload } from '@/services/imageUpload';
 import { useState, useEffect } from 'react';
-import clientPromise from '@/utils/mongodb';
+import axios from 'axios';
 
-export default function AdminPage (props) {
+export default function AdminPage ({images}) {
 
     const [image, setImage] = useState();
     const [imageSrc, setImageSrc] = useState();
     const [imageUrl, setImageUrl] = useState();
+    const [carouselItem, setCarouselItem] = useState();
 
-    console.log(props)
+
+    useEffect(() => {
+        setCarouselItem(images.map((product, index) => {
+            return(
+                <div key={index} className={styles.carouselItem}>
+                    <div className={styles.carouselItemImg}>
+                        <img src={product.url} style={{height: '10vh', width: 'auto'}}></img>
+                    </div>
+                    <div className={styles.formButtons}>
+                        <div className={styles.cancelButton} onClick={() => deleteImage(product._id)}><i className="fa-solid fa-trash"></i></div>
+                    </div>
+                </div>  
+            )
+        }))
+    }, [images])
 
     useEffect(() => {
         const insertData = async () => {
@@ -20,11 +35,11 @@ export default function AdminPage (props) {
         insertData();
     }, [imageUrl])
 
-    async function submitEvent(e) {
-        e.preventDefault();
+    async function submitEvent() {
         if (image){
             const url = await upload(image);
             setImageUrl(url);
+            window.location.reload();
         } else {
             alert('Nenhuma imagem selecionada');
         }
@@ -65,34 +80,28 @@ export default function AdminPage (props) {
         }
     }
 
-    // async function deleteImage() {
-    //     try {
-    //         const response = await axios.post('api/carousel_images/delete', {
-    //             _id: imageId
-    //         }, {
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         });
-    //         return response;
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
+    async function deleteImage(id) {
+        try {
+            const response = await axios.post('api/carousel_images/delete', {
+                _id: id
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            window.location.reload();
+            return response;
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div className={styles.mainContainer}>
             <div className={styles.carouselContainer}>
                 <h1>Carrosel</h1>
                 <div className={styles.carouselItems}>
-                    <div className={styles.carouselItem}>
-                        <div className={styles.carouselItemImg}>
-                            <img src='https://assets.website-files.com/5c281a6a77f28357629f48ce/5c2e9ed9c370807d384b20e8_banner-sale%20(3).jpg' style={{height: '10vh', width: 'auto'}}></img>
-                        </div>
-                        <div className={styles.formButtons}>
-                            <div className={styles.cancelButton}><i className="fa-solid fa-trash"></i></div>
-                        </div>
-                    </div>   
+                    {carouselItem}
                 </div>
                 <div className={styles.carouselAdd}>
                     <div className={styles.carouselFileInput}>
@@ -114,14 +123,4 @@ export default function AdminPage (props) {
             </div>
         </div>
     )
-}
-
-export const getServerSideProps = async () => {
-    const data = await getCarouselImages()
-
-    return {
-        props: {
-            data
-        }
-    }
 }

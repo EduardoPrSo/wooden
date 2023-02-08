@@ -1,3 +1,5 @@
+import axios from "axios";
+
 async function upload(image, folder='wooden-images'){
     const formdata = new FormData();
     const apiKey = process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY;
