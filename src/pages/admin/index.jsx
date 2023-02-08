@@ -15,7 +15,7 @@ export default function Admin({carouselImages}) {
 }
 
 export const getServerSideProps = async () => {
-    const response = await axios.get('http://localhost:3000/api/carousel_images/getCarouselImages' || 'https://woodenmarcenaria.com.br/api/carousel_images/getCarouselImages');
+    const response = await axios.get('http://localhost:3000/api/carousel_images/getCarouselImages');
     const carouselImages = response.data;
 
     return {
