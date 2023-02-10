@@ -9,7 +9,6 @@ export default function AdminCarousel ({carouselImages}) {
     const [imageSrc, setImageSrc] = useState();
     const [imageUrl, setImageUrl] = useState();
     const [carouselItem, setCarouselItem] = useState();
-    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         if (carouselImages) {
@@ -26,9 +25,8 @@ export default function AdminCarousel ({carouselImages}) {
                     </div>  
                 )
             }));
-            setRefresh(!refresh);
         }
-    }, [carouselImages, refresh])
+    }, [carouselImages])
 
     useEffect(() => {
         const insertData = async () => {
@@ -88,6 +86,21 @@ export default function AdminCarousel ({carouselImages}) {
         }
     }
 
+    async function deleteImageCloudinary(publicId) {
+        try {
+            const response = await axios.post('api/cloudinaryAPI/cloudinaryDelete', {
+                public_id: publicId
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            return response;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     async function deleteImage(id, publicId) {
         try {
             const response = await axios.post('api/carousel_images/delete', {
@@ -104,22 +117,6 @@ export default function AdminCarousel ({carouselImages}) {
             console.error(error);
         }
     };
-
-    async function deleteImageCloudinary(publicId) {
-        try {
-            const response = await axios.post('api/cloudinaryAPI/cloudinaryDelete', {
-                public_id: publicId
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            window.location.reload();
-            return response;
-        } catch (error) {
-            console.error(error);
-        }
-    }
 
     return (
         <div className={styles.carouselContainer}>

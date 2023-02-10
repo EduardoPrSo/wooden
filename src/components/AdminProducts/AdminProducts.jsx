@@ -13,15 +13,13 @@ export default function AdminProducts ({products}) {
     const [productImagesCarousel, setProductImagesCarousel] = useState();
     const [productImagesUrl, setProductImagesUrl] = useState([]);
     const [productItem, setProductItem] = useState();
-    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         if (products) {
             setProductItem(products.map((product, index) => {
-                const publicId = product.images.map((image, index) => {
+                const publicId = product.images.map((image) => {
                     return `wooden-images/${image.split('wooden-images/')[1].split('.')[0]}`;
                 });
-                console.log(publicId)
                 const CarouselItems = product.images.map((image, index) => (
                     <div key={index} style={{height: '100%', width: 'auto'}}>
                         <img src={image} style={{height: '10vh', width: 'auto'}}/>
@@ -58,9 +56,8 @@ export default function AdminProducts ({products}) {
                     </div> 
                 )
             }));
-            setRefresh(!refresh);
         }
-    }, [products, refresh])
+    }, [products])
 
     useEffect(() => {
         if (JSON.stringify(productImagesSrc) !== JSON.stringify([])) {
@@ -151,6 +148,21 @@ export default function AdminProducts ({products}) {
         return data
     };
 
+    async function deleteImageCloudinary(publicId) {
+        try {
+            const response =  axios.post('api/cloudinaryAPI/cloudinaryDelete', {
+                public_id: publicId
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            return response;
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     async function deleteImage(id, publicId) {
         try {
             const response = await axios.post('api/products/delete', {
@@ -161,22 +173,6 @@ export default function AdminProducts ({products}) {
                 }
             });
             await deleteImageCloudinary(publicId)
-            window.location.reload();
-            return response;
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    async function deleteImageCloudinary(publicId) {
-        try {
-            const response =  axios.post('api/cloudinaryAPI/cloudinaryDelete', {
-                public_id: publicId
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
             window.location.reload();
             return response;
         } catch (error) {
