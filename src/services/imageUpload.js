@@ -14,6 +14,7 @@ async function upload(image, folder='wooden-images'){
                 'Content-Type': 'multipart/form-data'
             }
         });
+        console.log('ID:',response.data.public_id)
         return response.data.secure_url;
     } catch (error) {
         console.error(error);

@@ -4,23 +4,27 @@ import Footer from '@/components/Footer/Footer'
 
 import axios from 'axios'
 
-export default function Admin({carouselImages}) {
+export default function Admin({carouselImages, products}) {
     return (
         <>
             <Header />
-            <AdminPage images={carouselImages}/>
+            <AdminPage items={{carouselImages, products}}/>
             {/* <Footer /> */}
         </>
     )
 }
 
 export const getServerSideProps = async () => {
-    const response = await axios.get('http://localhost:3000/api/carousel_images/getCarouselImages');
-    const carouselImages = response.data;
+    const responseCarousel = await axios.get('http://localhost:3000/api/carousel_images/getCarouselImages');
+    const carouselImages = responseCarousel.data;
+
+    const responseProducts = await axios.get('http://localhost:3000/api/products/getAllProducts');
+    const products = responseProducts.data;
 
     return {
         props: {
-            carouselImages
+            carouselImages,
+            products
         }
     }
 }

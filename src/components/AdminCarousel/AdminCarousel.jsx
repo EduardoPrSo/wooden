@@ -9,23 +9,26 @@ export default function AdminCarousel ({carouselImages}) {
     const [imageSrc, setImageSrc] = useState();
     const [imageUrl, setImageUrl] = useState();
     const [carouselItem, setCarouselItem] = useState();
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         if (carouselImages) {
             setCarouselItem(carouselImages.map((product, index) => {
+                const publicId = [`wooden-images/${product.url.split('wooden-images/')[1].split('.')[0]}`];
                 return(
                     <div key={index} className={styles.carouselItem}>
                         <div className={styles.carouselItemImg}>
                             <img src={product.url} style={{height: '10vh', width: 'auto'}}></img>
                         </div>
                         <div className={styles.formButtons}>
-                            <div className={styles.cancelButton} onClick={() => deleteImage(product._id)}><i className="fa-solid fa-trash"></i></div>
+                            <div className={styles.cancelButton} onClick={() => deleteImage(product._id, publicId)}><i className="fa-solid fa-trash"></i></div>
                         </div>
                     </div>  
                 )
-            }))
+            }));
+            setRefresh(!refresh);
         }
-    }, [carouselImages])
+    }, [carouselImages, refresh])
 
     useEffect(() => {
         const insertData = async () => {
@@ -35,22 +38,6 @@ export default function AdminCarousel ({carouselImages}) {
         }
         insertData();
     }, [imageUrl])
-
-    async function submitEvent() {
-        if (image){
-            const url = await upload(image);
-            setImageUrl(url);
-            window.location.reload();
-        } else {
-            alert('Nenhuma imagem selecionada');
-        }
-    }
-
-    function cancelEvent(e) {
-        e.preventDefault();
-        setImage();
-        setImageSrc();
-    }
 
     function handleImage(e) {
         const reader = new FileReader();
@@ -64,6 +51,26 @@ export default function AdminCarousel ({carouselImages}) {
         } catch (err) {
             reader.readAsDataURL(image);
         }
+    }
+
+    async function submitEvent() {
+        if (image){
+            try {
+                const url = await upload(image);
+                setImageUrl(url);
+                window.location.reload();
+            } catch (error) {
+                console.error(error);
+            }
+        } else {
+            alert('Nenhuma imagem selecionada');
+        }
+    }
+
+    function cancelEvent(e) {
+        e.preventDefault();
+        setImage();
+        setImageSrc();
     }
 
     async function insertImage() {
@@ -81,10 +88,27 @@ export default function AdminCarousel ({carouselImages}) {
         }
     }
 
-    async function deleteImage(id) {
+    async function deleteImage(id, publicId) {
         try {
             const response = await axios.post('api/carousel_images/delete', {
                 _id: id
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            await deleteImageCloudinary(publicId);
+            window.location.reload();
+            return response;
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    async function deleteImageCloudinary(publicId) {
+        try {
+            const response = await axios.post('api/cloudinaryAPI/cloudinaryDelete', {
+                public_id: publicId
             }, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -95,7 +119,7 @@ export default function AdminCarousel ({carouselImages}) {
         } catch (error) {
             console.error(error);
         }
-    };
+    }
 
     return (
         <div className={styles.carouselContainer}>
@@ -106,8 +130,8 @@ export default function AdminCarousel ({carouselImages}) {
             <div className={styles.carouselAdd}>
                 <div className={styles.carouselFileInput}>
                     <div className={styles.formFileInput}>
-                        <form style={!image ? {width: '8vw', height: '10vh'} : {width: 'auto', height: '10vh'}}>
-                            {!image ? <label htmlFor="file-uploader">Selecione a imagem</label> : <img src={imageSrc} style={{height: '10vh', width: 'auto'}}  onClick={() => document.getElementById("file-uploader").click()} />}
+                        <form style={!image ? {width: '160px', height: '100px', display: 'flex', alignItems: 'center'} : {width: 'auto', height: 'auto'}}>
+                            {!image ? <label htmlFor="file-uploader">Selecione a imagem</label> : <img src={imageSrc} style={{height: '140px', width: 'auto'}} onClick={() => document.getElementById("file-uploader").click()} />}
                             <input type="file" id='file-uploader' style={{display: 'none'}} onChange={handleImage}/>
                         </form>
                     </div>
