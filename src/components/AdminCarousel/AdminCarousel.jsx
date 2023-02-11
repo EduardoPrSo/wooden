@@ -11,21 +11,7 @@ export default function AdminCarousel ({carouselImages}) {
     const [carouselItem, setCarouselItem] = useState();
 
     useEffect(() => {
-        if (carouselImages) {
-            setCarouselItem(carouselImages.map((product, index) => {
-                const publicId = [`wooden-images/${product.url.split('wooden-images/')[1].split('.')[0]}`];
-                return(
-                    <div key={index} className={styles.carouselItem}>
-                        <div className={styles.carouselItemImg}>
-                            <img src={product.url} style={{height: '10vh', width: 'auto'}}></img>
-                        </div>
-                        <div className={styles.formButtons}>
-                            <div className={styles.cancelButton} onClick={() => deleteImage(product._id, publicId)}><i className="fa-solid fa-trash"></i></div>
-                        </div>
-                    </div>  
-                )
-            }));
-        }
+        setCarouselItem(carouselImages)
     }, [carouselImages])
 
     useEffect(() => {
@@ -102,6 +88,7 @@ export default function AdminCarousel ({carouselImages}) {
     }
 
     async function deleteImage(id, publicId) {
+        console.log(id, publicId)
         try {
             const response = await axios.post('api/carousel_images/delete', {
                 _id: id
@@ -111,7 +98,7 @@ export default function AdminCarousel ({carouselImages}) {
                 }
             });
             await deleteImageCloudinary(publicId);
-            window.location.reload();
+            // window.location.reload();
             return response;
         } catch (error) {
             console.error(error);
@@ -122,7 +109,21 @@ export default function AdminCarousel ({carouselImages}) {
         <div className={styles.carouselContainer}>
             <h1>Carrosel</h1>
             <div className={styles.carouselItems}>
-                {carouselItem}
+                {carouselItem && carouselItem.map((product, index) => {
+                    const publicId = [`wooden-images/${product.url.split('wooden-images/')[1].split('.')[0]}`];
+                    console.log(product._id)
+                    return(
+                        <div key={index} className={styles.carouselItem}>
+                            <div className={styles.carouselItemImg}>
+                                <img src={product.url} style={{height: '10vh', width: 'auto'}}></img>
+                            </div>
+                            <div className={styles.formButtons}>
+                                <div className={styles.cancelButton} onClick={() => deleteImage(product._id, publicId)}><i className="fa-solid fa-trash"></i></div>
+                                <div>{publicId}</div>
+                            </div>
+                        </div>  
+                    )
+                })}
             </div>
             <div className={styles.carouselAdd}>
                 <div className={styles.carouselFileInput}>
