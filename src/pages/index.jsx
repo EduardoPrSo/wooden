@@ -4,6 +4,7 @@ import ProductsDisplay from '@/components/ProductsDisplay/ProductsDisplay'
 import Partners from '@/components/Partners/Partners'
 import Footer from '@/components/Footer/Footer'
 import { api } from '@/lib/axios';
+import axios from 'axios';
 
 export default function Home({carouselImages, products}) {
     return (
