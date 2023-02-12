@@ -28,19 +28,6 @@
     outline: none;
 }
 
-.productsItems::-webkit-scrollbar {
-    width: 5px;
-}
-
-.productsItems::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.productsItems::-webkit-scrollbar-thumb {
-    background-color: #31313185;
-    border-radius: 20px;
-}
-
 .carouselAdd{
     width: 100%;
     height: 20vh;
@@ -202,17 +189,4 @@
 
 .centerProductsArea textarea:focus{
     outline: none;
-}
-
-.centerProductsArea textarea::-webkit-scrollbar {
-    width: 5px;
-}
-
-.centerProductsArea textarea::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.centerProductsArea textarea::-webkit-scrollbar-thumb {
-    background-color: #31313185;
-    border-radius: 20px;
 }
