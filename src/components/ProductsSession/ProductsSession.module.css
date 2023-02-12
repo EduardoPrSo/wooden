@@ -33,10 +33,18 @@
     border-radius: 5px;
     width: 15.63vw;
     height: auto;
-    padding: 5px;
+    padding: 20px 2px 20px 2px;
     margin-bottom: 5%;
     transition: .5s;
     border: 1px solid rgba(54, 54, 54, 0.349);
+    overflow-x: hidden;
+}
+
+.product img{
+    margin-bottom: 10px;
+    width: 70%;
+    height: 300px;
+    align-self: center;
 }
 
 .product:hover{

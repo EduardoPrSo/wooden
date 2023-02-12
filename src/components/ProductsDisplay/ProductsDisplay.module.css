@@ -51,6 +51,7 @@
 
 .productInfo{
     display: inline-block;
+    align-self: flex-start;
     flex-direction: column;
 }
 

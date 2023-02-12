@@ -1,21 +1,40 @@
 import Header from '@/components/Header/Header'
 import AdminPage from '@/components/AdminPage/AdminPage'
-import Footer from '@/components/Footer/Footer'
+import AdminLogin from '@/components/AdminLogin/AdminLogin'
+import { setCookie, parseCookies } from 'nookies';
+import { useState } from 'react';
 
 import axios from 'axios'
 
-export default function Admin({carouselImages, products}) {
+export default function Admin({carouselImages, products, logged}) {
+    const [isLogged, setIsLogged] = useState(logged);
+
+    !logged && setLoggedCookie(true);
+
+    function setLoggedCookie(value) {
+        setCookie(null, 'IS_LOGGED_WOODEN_ADMIN', value, {
+            path: '/',
+            maxAge: 86400
+        })
+    }
+
+    const handleLogin = () => {
+        setLoggedCookie(true);
+        setIsLogged(true);
+    }
+
     return (
         <>
             <Header />
-            <AdminPage items={{carouselImages, products}}/>
-            {/* <Footer /> */}
+            {isLogged ? <AdminPage items={{carouselImages, products}}/> : <AdminLogin onLogin={handleLogin}/>}
         </>
     )
 }
 
-export const getServerSideProps = async () => {
-    const responseCarousel = await axios.get('http://localhost:3000/api/carousel_images/getCarouselImages');
+export const getServerSideProps = async (context) => {
+    const logged = parseCookies(context).IS_LOGGED_WOODEN_ADMIN || false;
+
+    const responseCarousel = await axios.get('http://localhost:3000/api/carouselImages/getCarouselImages');
     const carouselImages = responseCarousel.data;
 
     const responseProducts = await axios.get('http://localhost:3000/api/products/getAllProducts');
@@ -24,7 +43,8 @@ export const getServerSideProps = async () => {
     return {
         props: {
             carouselImages,
-            products
+            products,
+            logged
         }
     }
 }

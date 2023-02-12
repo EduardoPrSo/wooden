@@ -2,25 +2,28 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styles from './ProductsSession.module.css'
 
-export default function ProductsSession(){
+export default function ProductsSession({productsData}){
     const router = useRouter();
     const { page = 1 } = router.query;
 
-    const productsCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
     const productsDivisor = [];
     
-    for (let i = 0; i < productsCount.length; i += 9) {
-        productsDivisor.push(productsCount.slice(i, i + 9));
+    for (let i = 0; i < productsData.length; i += 9) {
+        productsDivisor.push(productsData.slice(i, i + 9));
     }
 
     const products = productsDivisor[page-1].map((product, index) => {
         return(
-            <div key={index} className={styles.product}>
-                <img src="https://assets.website-files.com/5c281a6a77f28357629f48ce/5c2d45ca2d233f5b793ecdff_armchair-1.jpg" alt="Trabalho 1" style={{marginBottom: '10px'}}/>
-                <h3 style={{marginLeft: '5px', fontWeight: '600'}}>Trabalho {product}</h3>
+            <div key={index} className={styles.product} onClick={()=>productRedirect(product._id)}>
+                <img src={product.images[0]}/>
+                <h3 style={{marginLeft: '15px', fontWeight: '600'}}>{product.title}</h3>
             </div>
         )
     })
+
+    function productRedirect(id){
+        router.push(`/produto/${id}`)
+    }
 
     const PageButtons = ({ productsDivisor, page, styles }) => {
         if (productsDivisor.length > 1 && page == 1) {

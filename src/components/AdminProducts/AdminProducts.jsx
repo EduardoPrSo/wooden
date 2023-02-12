@@ -15,48 +15,7 @@ export default function AdminProducts ({products}) {
     const [productItem, setProductItem] = useState();
 
     useEffect(() => {
-        if (products) {
-            setProductItem(products.map((product, index) => {
-                const publicId = product.images.map((image) => {
-                    return `wooden-images/${image.split('wooden-images/')[1].split('.')[0]}`;
-                });
-                const CarouselItems = product.images.map((image, index) => (
-                    <div key={index} style={{height: '100%', width: 'auto'}}>
-                        <img src={image} style={{height: '10vh', width: 'auto'}}/>
-                    </div>
-                ));
-                return(
-                    <div key={index} className={styles.carouselItem}>
-                        <form>
-                            <Carousel className={styles.carouselProductsAddArea} showStatus={false} showArrows={true} autoPlay={false} showThumbs={false} style={!productImagesCarousel ? {width: '160px', height: '100px', display: 'flex', alignItems: 'center'} : {width: 'auto', height: 'auto'}}>
-                                {CarouselItems}
-                            </Carousel>
-                            <div className={styles.centerProductsAddArea}>
-                                <p style={{color: '#fc8f00'}}>Título: </p>
-                                <p style={{fontSize: 'small', marginBottom: '5px'}}>{product.title}</p>
-                                <p style={{color: '#fc8f00'}}>Descrição: </p>
-                                <p style={{fontSize: 'small'}}>{product.description}</p>
-                            </div>
-                            <div className={styles.centerProductsAddArea}>
-                                <p style={{color: '#fc8f00'}}>Categoria: </p>
-                                <p style={{fontSize: 'small', marginBottom: '5px'}}>{product.cathegory}</p>
-                                <p style={{color: '#fc8f00'}}>Prazo: </p>
-                                <p style={{fontSize: 'small'}}>{product.term}</p>
-                            </div>
-                            <div className={styles.centerProductsAddArea}>
-                                <p style={{color: '#fc8f00'}}>Material: </p>
-                                <p style={{fontSize: 'small', marginBottom: '5px'}}>{product.material}</p>
-                                <p style={{color: '#fc8f00'}}>Página principal: </p>
-                                <p style={{fontSize: 'small'}}>{product.on_main_page ? 'Sim' : 'Não'}</p>
-                            </div>
-                            <div className={styles.formButtons}>
-                                <div className={styles.cancelButton} onClick={() => deleteImage(product._id, publicId)}><i className="fa-solid fa-trash"></i></div>
-                            </div>
-                        </form>
-                    </div> 
-                )
-            }));
-        }
+        setProductItem(products)
     }, [products])
 
     useEffect(() => {
@@ -164,19 +123,21 @@ export default function AdminProducts ({products}) {
     };
 
     async function deleteImage(id, publicId) {
-        try {
-            const response = await axios.post('api/products/delete', {
-                _id: id
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            await deleteImageCloudinary(publicId)
-            window.location.reload();
-            return response;
-        } catch (error) {
-            console.error(error);
+        if (confirm('Você deseja deletar esse produto?')){
+            try {
+                const response = await axios.post('api/products/delete', {
+                    id: id
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                await deleteImageCloudinary(publicId)
+                window.location.reload();
+                return response;
+            } catch (error) {
+                console.error(error);
+            }
         }
     };
 
@@ -184,7 +145,46 @@ export default function AdminProducts ({products}) {
         <div className={styles.productsContainer}>
             <h1>Produtos</h1>
             <div className={styles.productsItems}>
-                {productItem}
+                {productItem && productItem.map((product, index) => {
+                    const publicId = product.images.map((image) => {
+                        return `wooden-images/${image.split('wooden-images/')[1].split('.')[0]}`;
+                    });
+                    const CarouselItems = product.images.map((image, index) => (
+                        <div key={index} style={{height: '100%', width: 'auto'}}>
+                            <img src={image} style={{height: '10vh', width: 'auto'}}/>
+                        </div>
+                    ));
+                    return(
+                        <div key={index} className={styles.carouselItem}>
+                            <form>
+                                <Carousel className={styles.carouselProductsAddArea} showStatus={false} showArrows={true} autoPlay={false} showThumbs={false} style={!productImagesCarousel ? {width: '160px', height: '100px', display: 'flex', alignItems: 'center'} : {width: 'auto', height: 'auto'}}>
+                                    {CarouselItems}
+                                </Carousel>
+                                <div className={styles.centerProductsArea}>
+                                    <p style={{color: '#fc8f00'}}>Título: </p>
+                                    <p style={{fontSize: 'small', marginBottom: '5px'}}>{product.title}</p>
+                                    <p style={{color: '#fc8f00'}}>Descrição: </p>
+                                    <textarea readOnly value={product.description}/>
+                                </div>
+                                <div className={styles.centerProductsArea}>
+                                    <p style={{color: '#fc8f00'}}>Categoria: </p>
+                                    <p style={{fontSize: 'small', marginBottom: '5px'}}>{product.cathegory}</p>
+                                    <p style={{color: '#fc8f00'}}>Prazo: </p>
+                                    <p style={{fontSize: 'small'}}>{product.term}</p>
+                                </div>
+                                <div className={styles.centerProductsArea}>
+                                    <p style={{color: '#fc8f00'}}>Material: </p>
+                                    <p style={{fontSize: 'small', marginBottom: '5px'}}>{product.material}</p>
+                                    <p style={{color: '#fc8f00'}}>Página principal: </p>
+                                    <p style={{fontSize: 'small'}}>{product.on_main_page ? 'Sim' : 'Não'}</p>
+                                </div>
+                                <div className={styles.formButtons}>
+                                    <div className={styles.cancelButton} onClick={() => deleteImage(product._id, publicId)}><i className="fa-solid fa-trash"></i></div>
+                                </div>
+                            </form>
+                        </div>
+                    )
+                })}
             </div>
             <div className={styles.carouselAdd}>
                 <form action="" encType="multipart/form-data">

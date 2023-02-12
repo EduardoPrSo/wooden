@@ -6,8 +6,12 @@ export default async function hendler(req, res){
 
         if (method === 'POST') {
             const { db } = await connectToDatabase();
-            await db.collection('carousel_images').deleteOne({image_id: body.id})
-            res.status(200).json({ message: 'Success' });
+            const session = await db.collection('admin_account').findOne();
+            if (session.user === body.username && session.pass === body.password){
+                res.status(200).json({ message: 'success' });
+            } else{
+                res.status(401).json({ message: 'User not allowed' });
+            }
         } else {
             res.status(400).json({ message: 'Method not allowed' });
         }

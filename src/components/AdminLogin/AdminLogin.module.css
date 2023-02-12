@@ -1,0 +1,55 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 70vh;
+}
+
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 20vw;
+    height: 30vh;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #808080;
+    padding: 1%;
+}
+
+.loginContainer form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.loginContainer form input{
+    width: 80%;
+    height: 5vh;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.171);
+    padding-left: 1%;
+    margin-bottom: 5%;
+}
+
+.loginContainer form button{
+    width: 80%;
+    height: 5vh;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.171);
+    background-color: #f5f5f5;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.loginContainer form button:hover{
+    box-shadow: 5px 5px 10px #808080;
+    transition: .3s;
+}

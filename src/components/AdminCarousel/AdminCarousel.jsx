@@ -1,6 +1,6 @@
 import styles from './AdminCarousel.module.css';
-import { upload } from '@/services/imageUpload';
 import { useState, useEffect } from 'react';
+import { upload } from '@/services/imageUpload';
 import axios from 'axios';
 
 export default function AdminCarousel ({carouselImages}) {
@@ -59,7 +59,7 @@ export default function AdminCarousel ({carouselImages}) {
 
     async function insertImage() {
         try {
-            const response = await axios.post('api/carousel_images/insert', {
+            const response = await axios.post('api/carouselImages/insert', {
                 url: imageUrl
             }, {
                 headers: {
@@ -88,20 +88,21 @@ export default function AdminCarousel ({carouselImages}) {
     }
 
     async function deleteImage(id, publicId) {
-        console.log(id, publicId)
-        try {
-            const response = await axios.post('api/carousel_images/delete', {
-                _id: id
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            await deleteImageCloudinary(publicId);
-            // window.location.reload();
-            return response;
-        } catch (error) {
-            console.error(error);
+        if (confirm('Você deseja deletar essa foto?')){
+            try {
+                const response = await axios.post('api/carouselImages/delete', {
+                    id: id
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                await deleteImageCloudinary(publicId);
+                window.location.reload();
+                return response;
+            } catch (error) {
+                console.error(error);
+            }
         }
     };
 
@@ -111,7 +112,6 @@ export default function AdminCarousel ({carouselImages}) {
             <div className={styles.carouselItems}>
                 {carouselItem && carouselItem.map((product, index) => {
                     const publicId = [`wooden-images/${product.url.split('wooden-images/')[1].split('.')[0]}`];
-                    console.log(product._id)
                     return(
                         <div key={index} className={styles.carouselItem}>
                             <div className={styles.carouselItemImg}>
@@ -119,7 +119,6 @@ export default function AdminCarousel ({carouselImages}) {
                             </div>
                             <div className={styles.formButtons}>
                                 <div className={styles.cancelButton} onClick={() => deleteImage(product._id, publicId)}><i className="fa-solid fa-trash"></i></div>
-                                <div>{publicId}</div>
                             </div>
                         </div>  
                     )
