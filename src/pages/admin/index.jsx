@@ -8,7 +8,7 @@ import { api } from '@/lib/axios';
 export default function Admin({carouselImages, products, logged}) {
     const [isLogged, setIsLogged] = useState(logged);
 
-    !logged && setLoggedCookie(true);
+    !logged && setLoggedCookie(false);
 
     function setLoggedCookie(value) {
         setCookie(null, 'IS_LOGGED_WOODEN_ADMIN', value, {
