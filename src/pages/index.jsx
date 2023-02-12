@@ -5,29 +5,29 @@ import Partners from '@/components/Partners/Partners'
 import Footer from '@/components/Footer/Footer'
 import { api } from '@/lib/axios';
 
-export default function Home({carouselImages, products, teste}) {
+export default function Home({carouselImages, products}) {
     return (
         <>
             <Header />
-            <MainCarousel carouselImages={carouselImages}/>
-            <ProductsDisplay productsData={products} />
+            {/* <MainCarousel carouselImages={carouselImages}/>
+            <ProductsDisplay productsData={products} /> */}
             <Partners />
             <Footer />
         </>
     )
 }
 
-export const getServerSideProps = async () => {
-    const responseCarousel = await api.get('/api/carouselImages/getCarouselImages');
-    const carouselImages = responseCarousel.data;
+// export const getServerSideProps = async () => {
+//     const responseCarousel = await api.get('/api/carouselImages/getCarouselImages');
+//     const carouselImages = responseCarousel.data;
 
-    const responseProducts = await api.get('/api/products/getMainPageProducts');
-    const products = responseProducts.data;
+//     const responseProducts = await api.get('/api/products/getMainPageProducts');
+//     const products = responseProducts.data;
 
-    return {
-        props: {
-            carouselImages,
-            products,
-        }
-    }
-}
+//     return {
+//         props: {
+//             carouselImages,
+//             products,
+//         }
+//     }
+// }
