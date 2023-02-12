@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 export default function Contact () {
 
     const [emailAlert, setEmailAlert] = useState(false);
+    const [emailAlertTitle, setEmailAlertTitle] = useState();
 
     async function sendEmail(e) {
         e.preventDefault()
@@ -17,7 +18,12 @@ export default function Contact () {
             message: formData.get("message"),
             accessKey: "f34d3d8b-268f-403d-a429-bf095bcc78b5",
         }
-
+        if (body.email === "" || body.name === "" || body.message === "") {
+            setEmailAlertTitle(<>Preencha todos os campos!</>);
+            setEmailAlert(true);
+            setTimeout(() => setEmailAlert(false), 2000);
+            return;
+        }
         try {
             const response = await fetch("https:/api.staticforms.xyz/submit", {
                 method: "POST",
@@ -31,6 +37,7 @@ export default function Contact () {
             console.error(error);
         }
 
+        setEmailAlertTitle(<>Email enviado! <i className="fa-sharp fa-solid fa-check"></i></>);
         setEmailAlert(true);
         setTimeout(() => setEmailAlert(false), 2000);
     }
@@ -45,14 +52,14 @@ export default function Contact () {
                     <h3 style={{color: 'black'}}><i className="fa-sharp fa-solid fa-envelope" style={{color: '#fc8f00'}}></i> Envie um email</h3>
                     <motion.div className={styles.emailAlert} style={{display: emailAlert ? 'flex' : 'none'}}
                         animate={{y: emailAlert ? -30 : -300, opacity: emailAlert ? 1 : 0}}>
-                        <h2>Email enviado! <i className="fa-sharp fa-solid fa-check"></i></h2>
+                        <h2>{emailAlertTitle}</h2>
                     </motion.div>
                     <form className={styles.emailContact} onSubmit={sendEmail}>
                         <input className={styles.emailContactLabel} type="text" name="name" placeholder="Seu nome" />
                         <input className={styles.emailContactLabel} type="text" name="email" placeholder="Seu Email" />
                         <textarea className={styles.emailContactTextArea} name="message" placeholder="Digite sua mensagem"></textarea>
                         {/* <input type="hidden" name="accessKey" value="f34d3d8b-268f-403d-a429-bf095bcc78b5" /> */}
-                        <input type="hidden" name="accessKey" value="8758bd35-2bc6-44e0-87bc-09f680ed2339" />
+                        {/* <input type="hidden" name="accessKey" value="8758bd35-2bc6-44e0-87bc-09f680ed2339" /> */}
                         <button className={styles.emailContactSubmit} type="submit">Enviar</button>
                     </form>
                 </div>

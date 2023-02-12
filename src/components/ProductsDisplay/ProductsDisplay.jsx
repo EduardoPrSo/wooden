@@ -40,7 +40,6 @@ export default function ProductsDisplay({ productsData }) {
 
     return (
       <div className={styles.mainContainer} style={{with: '100vw', display: 'flex'}}>
-        <h1>Alguns Trabalhos</h1>
             <div className={styles.productsContainer}>
                 <div className={styles.productsRow}>
                     {displayProducts}
