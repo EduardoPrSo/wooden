@@ -1,7 +1,7 @@
 import { connectToDatabase } from "@/utils/mongodb";
 import { ObjectId } from 'mongodb';
 
-export default async function hendler(req, res){
+export default async function handler(req, res){
     try {
         const { method, body } = req;
 

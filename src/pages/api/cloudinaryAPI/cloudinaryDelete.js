@@ -6,7 +6,7 @@ cloudinary.v2.config({
     api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET
 });
 
-export default async function hendler(req, res){
+export default async function handler(req, res){
     try {
         const { method, body } = req;
 

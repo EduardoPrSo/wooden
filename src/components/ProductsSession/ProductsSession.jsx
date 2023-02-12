@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import Link from 'next/link';
 import styles from './ProductsSession.module.css'
 
@@ -15,7 +16,10 @@ export default function ProductsSession({productsData}){
     const products = productsDivisor[page-1].map((product, index) => {
         return(
             <div key={index} className={styles.product} onClick={()=>productRedirect(product._id)}>
-                <img src={product.images[0]}/>
+                <div className={styles.imageContainer}>
+                    <img src={product.images[0]} 
+                />
+                </div>
                 <h3 style={{marginLeft: '15px', fontWeight: '600'}}>{product.title}</h3>
             </div>
         )

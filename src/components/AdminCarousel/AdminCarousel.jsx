@@ -1,7 +1,7 @@
 import styles from './AdminCarousel.module.css';
 import { useState, useEffect } from 'react';
 import { upload } from '@/services/imageUpload';
-import { api } from '@/lib/axios';
+import { fetchAPI } from '@/lib/fetchAPI';
 
 export default function AdminCarousel ({carouselImages}) {
 
@@ -37,7 +37,8 @@ export default function AdminCarousel ({carouselImages}) {
         }
     }
 
-    async function submitEvent() {
+    async function submitEvent(e) {
+        e.preventDefault();
         if (image){
             try {
                 const url = await upload(image);
@@ -58,51 +59,30 @@ export default function AdminCarousel ({carouselImages}) {
     }
 
     async function insertImage() {
-        try {
-            const response = await api.post(`/api/carouselImages/insert`, {
-                url: imageUrl
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            return response;
-        } catch (error) {
-            console.error(error);
-        }
+        fetchAPI(`api/carouselImages/insert`, {
+            url: imageUrl
+        }).catch((err) => {
+            console.error(err);
+        })
     }
 
     async function deleteImageCloudinary(publicId) {
-        try {
-            const response = await api.post(`/api/cloudinaryAPI/cloudinaryDelete`, {
-                public_id: publicId
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            return response;
-        } catch (error) {
-            console.error(error);
-        }
+        fetchAPI(`api/cloudinaryAPI/cloudinaryDelete`, {
+            public_id: publicId
+        }).catch((err) => {
+            console.error(err);
+        })
     }
 
     async function deleteImage(id, publicId) {
         if (confirm('Você deseja deletar essa foto?')){
-            try {
-                const response = await api.post(`/api/carouselImages/delete`, {
-                    id: id
-                }, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                await deleteImageCloudinary(publicId);
-                window.location.reload();
-                return response;
-            } catch (error) {
-                console.error(error);
-            }
+            fetchAPI(`api/carouselImages/delete`, {
+                id: id
+            }).catch((err) => {
+                console.error(err);
+            })
+            await deleteImageCloudinary(publicId);
+            window.location.reload();
         }
     };
 

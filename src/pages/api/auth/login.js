@@ -1,12 +1,13 @@
 import { connectToDatabase } from "@/utils/mongodb";
 
-export default async function hendler(req, res){
+export default async function handler(req, res){
     try {
         const { method, body } = req;
 
         if (method === 'POST') {
             const { db } = await connectToDatabase();
             const session = await db.collection('admin_account').findOne();
+            console.log(body.username)
             if (session.user === body.username && session.pass === body.password){
                 res.status(200).json({ message: 'success' });
             } else{

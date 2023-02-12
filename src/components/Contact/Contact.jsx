@@ -19,7 +19,7 @@ export default function Contact () {
         }
 
         try {
-            const response = await fetch("https://api.staticforms.xyz/submit", {
+            const response = await fetch("https:/api.staticforms.xyz/submit", {
                 method: "POST",
                 body: JSON.stringify(body),
                 headers: { 'Content-Type': 'application/json' }
@@ -47,12 +47,12 @@ export default function Contact () {
                         animate={{y: emailAlert ? -30 : -300, opacity: emailAlert ? 1 : 0}}>
                         <h2>Email enviado! <i className="fa-sharp fa-solid fa-check"></i></h2>
                     </motion.div>
-                    <form className={styles.emailContact} onSubmit={sendEmail} action="https://api.staticforms.xyz/submit" method="post">
+                    <form className={styles.emailContact} onSubmit={sendEmail}>
                         <input className={styles.emailContactLabel} type="text" name="name" placeholder="Seu nome" />
                         <input className={styles.emailContactLabel} type="text" name="email" placeholder="Seu Email" />
                         <textarea className={styles.emailContactTextArea} name="message" placeholder="Digite sua mensagem"></textarea>
-                        <input type="hidden" name="accessKey" value="f34d3d8b-268f-403d-a429-bf095bcc78b5" />
-                        {/* <input type="hidden" name="accessKey" value="8758bd35-2bc6-44e0-87bc-09f680ed2339" /> */}
+                        {/* <input type="hidden" name="accessKey" value="f34d3d8b-268f-403d-a429-bf095bcc78b5" /> */}
+                        <input type="hidden" name="accessKey" value="8758bd35-2bc6-44e0-87bc-09f680ed2339" />
                         <button className={styles.emailContactSubmit} type="submit">Enviar</button>
                     </form>
                 </div>

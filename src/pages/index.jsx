@@ -3,7 +3,7 @@ import MainCarousel from '@/components/MainCarousel/MainCarousel'
 import ProductsDisplay from '@/components/ProductsDisplay/ProductsDisplay'
 import Partners from '@/components/Partners/Partners'
 import Footer from '@/components/Footer/Footer'
-import { api } from '@/lib/axios';
+import { fetchAPI } from '@/lib/fetchAPI';
 
 export default function Home({carouselImages, products}) {
     return (
@@ -18,11 +18,9 @@ export default function Home({carouselImages, products}) {
 }
 
 export const getServerSideProps = async () => {
-    const responseCarousel = await api.get(`/api/carouselImages/getCarouselImages`);
-    const carouselImages = responseCarousel.data;
+    const carouselImages = await fetchAPI(`api/carouselImages/getCarouselImages`);
 
-    const responseProducts = await api.get('/api/products/getMainPageProducts');
-    const products = responseProducts.data;
+    const products = await fetchAPI('api/products/getMainPageProducts');
 
     return {
         props: {

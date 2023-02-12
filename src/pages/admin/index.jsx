@@ -1,49 +1,33 @@
 import Header from '@/components/Header/Header'
 import AdminPage from '@/components/AdminPage/AdminPage'
-import AdminLogin from '@/components/AdminLogin/AdminLogin'
-import { setCookie, parseCookies } from 'nookies';
-import { useState } from 'react';
-import { api } from '@/lib/axios';
+import { parseCookies } from 'nookies';
+import { fetchAPI } from '@/lib/fetchAPI';
 
-export default function Admin({carouselImages, products, logged}) {
-    const [isLogged, setIsLogged] = useState(logged);
-
-    !logged && setLoggedCookie(false);
-
-    function setLoggedCookie(value) {
-        setCookie(null, 'IS_LOGGED_WOODEN_ADMIN', value, {
-            path: '/',
-            maxAge: 86400
-        })
-    }
-
-    const handleLogin = () => {
-        setLoggedCookie(true);
-        setIsLogged(true);
-    }
-
+export default function Admin({carouselImages, products}) {
     return (
         <>
             <Header />
-            {isLogged ? <AdminPage items={{carouselImages, products}}/> : <AdminLogin onLogin={handleLogin}/>}
+            {<AdminPage items={{carouselImages, products}}/>}
         </>
     )
 }
 
 export const getServerSideProps = async (context) => {
-    const logged = parseCookies(context).IS_LOGGED_WOODEN_ADMIN || false;
+    const isAdmin = parseCookies(context).IS_LOGGED_WOODEN_ADMIN || false;
 
-    const responseCarousel = await api.get('/api/carouselImages/getCarouselImages');
-    const carouselImages = responseCarousel.data;
+    if (!isAdmin) {
+        return {redirect: {destination: '/admin/signin', permanent: false}}
+    }
 
-    const responseProducts = await api.get('/api/products/getAllProducts');
-    const products = responseProducts.data;
+    const carouselImages = await fetchAPI('api/carouselImages/getCarouselImages');
+
+    const products = await fetchAPI('api/products/getAllProducts');
 
     return {
         props: {
             carouselImages,
             products,
-            logged
+            isAdmin
         }
     }
 }

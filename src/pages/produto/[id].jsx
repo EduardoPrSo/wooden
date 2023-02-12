@@ -3,7 +3,7 @@ import Product from "@/components/Product/Product";
 import Footer from "@/components/Footer/Footer";
 
 import { useRouter } from 'next/router';
-import { api } from "@/lib/axios";
+import { fetchAPI} from "@/lib/fetchAPI";
 
 export default function Trabalhos({product}){
     const router = useRouter();
@@ -22,10 +22,10 @@ export default function Trabalhos({product}){
 export const getServerSideProps = async ({ query }) => {
     const { id } = query;
 
-    const response = await api.post('/api/products/getProduct',{
+    const product = await fetchAPI('api/products/getProduct',{
         id: id
     });
-    const product = response.data;
+
     return {
         props: {
             product

@@ -1,6 +1,6 @@
 import { connectToDatabase } from "@/utils/mongodb";
 
-export default async function hendler(req, res){
+export default async function handler(req, res){
     try {
         const { method } = req;
 

@@ -1,7 +1,7 @@
 import styles from './AdminProducts.module.css';
 import { useState, useEffect } from 'react';
 import { upload } from '@/services/imageUpload';
-import { api } from '@/lib/axios';
+import { fetchAPI } from '@/lib/fetchAPI';
 
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -75,24 +75,17 @@ export default function AdminProducts ({products}) {
 
     async function insertImage() {
         const formData = getInputs();
-        try {
-            const response = await api.post(`/api/products/insert`, {
-                title: formData.title,
-                description: formData.description,
-                cathegory: formData.cathegory,
-                term: formData.term,
-                material: formData.material,
-                images: productImagesUrl,
-                on_main_page: formData.on_main_page
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            return response;
-        } catch (error) {
-            console.error(error);
-        }
+        fetchAPI(`api/products/insert`, {
+            title: formData.title,
+            description: formData.description,
+            cathegory: formData.cathegory,
+            term: formData.term,
+            material: formData.material,
+            images: productImagesUrl,
+            on_main_page: formData.on_main_page
+        }).catch((err) => {
+            console.error(err);
+        });
     };
 
     function getInputs(){
@@ -108,36 +101,22 @@ export default function AdminProducts ({products}) {
     };
 
     async function deleteImageCloudinary(publicId) {
-        try {
-            const response =  api.post(`/api/cloudinaryAPI/cloudinaryDelete`, {
-                public_id: publicId
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            return response;
-        } catch (error) {
-            console.error(error);
-        }
+        fetchAPI(`api/cloudinaryAPI/cloudinaryDelete`, {
+            public_id: publicId
+        }).catch((err) => {
+            console.error(err);
+        });
     };
 
     async function deleteImage(id, publicId) {
         if (confirm('Você deseja deletar esse produto?')){
-            try {
-                const response = await api.post(`/api/products/delete`, {
-                    id: id
-                }, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                await deleteImageCloudinary(publicId)
-                window.location.reload();
-                return response;
-            } catch (error) {
-                console.error(error);
-            }
+            fetchAPI(`api/products/delete`, {
+                id: id
+            }).catch((err) => {
+                console.error(err);
+            });
+            await deleteImageCloudinary(publicId)
+            window.location.reload();
         }
     };
 
