@@ -1,7 +1,6 @@
 const fetchAPI = async(url, data) => {
     const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
     if (data){
-        console.log(data)
         const response = await fetch(`${baseUrl}/${url}`, {
             method: 'POST',
             headers: {

@@ -37,7 +37,7 @@ export default function Product({product}) {
                 <div className={styles.infoContainer}>
                     {product && <div className={styles.infoContent}>
                         <h1 style={{color: '#fc8f00'}}>{product.title}</h1>
-                        <p style={{borderBottom: '2px solid #fc8f00', paddingBottom: '5%', height: '50vh'}}>{product.description}</p>
+                        <p style={{borderBottom: '2px solid #fc8f00', paddingBottom: '5%', height: '50vh', textAlign: 'justify'}}>{product.description}</p>
                         <div className={styles.moreInfo}>
                             <div className={styles.productInfo}>
                                 <h3 style={{marginBottom: '5%', color: '#fc8f00'}}>Categoria</h3>

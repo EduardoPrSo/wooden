@@ -2,33 +2,26 @@ import styles from './AdminLogin.module.css';
 import Header from '@/components/Header/Header';
 import { setCookie } from 'nookies';
 import { useRouter } from 'next/router';
+import { fetchAPI } from '@/lib/fetchAPI';
 
 export default function AdminLogin () {
     const router = useRouter();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await fetch('api/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: document.querySelector('#loginUsername').value,
-                    password: document.querySelector('#loginPassword').value
-                })
-            })
-            const data = await response.json();
-            if (data.message === 'success') {
+        fetchAPI('api/auth/login', {
+            username: document.querySelector('#loginUsername').value,
+            password: document.querySelector('#loginPassword').value
+        }).then((response) => {
+            if (response.message === 'success') {
                 setCookie(null, 'IS_LOGGED_WOODEN_ADMIN', true, {
                     path: '/',
                     maxAge: 86400
                 })
                 router.push('/admin');
             }
-        } catch (error) {
-            console.error(error);
-        }
+        }).catch((err) => {
+            console.error(err);
+        })
     };
 
     return (

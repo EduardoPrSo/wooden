@@ -1,0 +1,52 @@
+.mainContainer{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aboutContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 80%;
+    width: 55%;
+    background-color: #f5f5f5;
+    top: 28%;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px #808080;
+}
+
+.aboutinfoContainer{
+    width: 90%;
+    height: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.allContacts{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    align-self: flex-start;
+    margin-top: 5%;
+}
+
+.mapContainer{
+    width: 90%;
+    height: 65%;
+}
+
+.linkButton{
+    color: #fc8f00;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.linkButton:hover{
+    cursor: pointer;
+    transition: .3s;
+}

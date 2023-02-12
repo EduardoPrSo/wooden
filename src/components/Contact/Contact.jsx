@@ -65,16 +65,16 @@ export default function Contact () {
                 </div>
                 <div className={styles.otherContacts}>
                     <div className={styles.allContacts}>
-                        <h3><i className="fa-sharp fa-solid fa-phone" style={{color: '#fc8f00'}}></i> Ligue para nós</h3>
-                        <p>(41) 9 9264-2454</p>
+                        <h3 style={{fontSize: '2.2vh'}}><i className="fa-sharp fa-solid fa-phone" style={{color: '#fc8f00'}}></i> Ligue para nós</h3>
+                        <p style={{fontSize: '2vh'}}>(41) 9 9264-2454</p>
                     </div>
                     <div className={styles.allContacts}>
-                        <h3><i className="fa-sharp fa-solid fa-comment" style={{color: '#fc8f00'}}></i> Nos chame no WhatsApp</h3>
-                        <p className={styles.linkButton} onClick={() => {window.open('https://wa.me/5541992642454?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento!', '_blank')}}>Inicie uma conversa</p>
+                        <h3 style={{fontSize: '2.2vh'}}><i className="fa-sharp fa-solid fa-comment" style={{color: '#fc8f00'}}></i> Nos chame no WhatsApp</h3>
+                        <p style={{fontSize: '2vh'}} className={styles.linkButton} onClick={() => {window.open('https://wa.me/5541992642454?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento!', '_blank')}}>Inicie uma conversa</p>
                     </div>
                     <div className={styles.allContacts}>
-                        <h3><i className="fa-sharp fa-solid fa-camera" style={{color: '#fc8f00'}}></i> Veja nosso instagram</h3>
-                        <p className={styles.linkButton} onClick={() => {window.open('https://www.instagram.com/marcenariawooden/', '_blank')}}>@marcenariawooden</p>
+                        <h3 style={{fontSize: '2.2vh'}}><i className="fa-sharp fa-solid fa-camera" style={{color: '#fc8f00'}}></i> Veja nosso instagram</h3>
+                        <p style={{fontSize: '2vh'}} className={styles.linkButton} onClick={() => {window.open('https://www.instagram.com/marcenariawooden/', '_blank')}}>@marcenariawooden</p>
                     </div>
                 </div>
             </div>

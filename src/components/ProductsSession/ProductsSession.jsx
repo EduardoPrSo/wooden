@@ -20,7 +20,7 @@ export default function ProductsSession({productsData}){
                     <img src={product.images[0]} 
                 />
                 </div>
-                <h3 style={{marginLeft: '15px', fontWeight: '600'}}>{product.title}</h3>
+                <h3 style={{marginLeft: '10px', fontWeight: '600', fontSize: '1rem'}}>{product.title}</h3>
             </div>
         )
     })

@@ -1,11 +1,23 @@
-.classContainer{
+.mainContainer{
     width: 100vw;
     height: 20vh;
     background-color: transparent;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     padding: 5px 0 0 0;
     bottom: 0;
     border-top: 1px solid #fc8f00;
+}
+
+.classContainer{
+    width: 100vw;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.classContainer img{
+    width: 7vw;
 }

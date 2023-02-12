@@ -88,17 +88,30 @@ export default function AdminProducts ({products}) {
         });
     };
 
-    function getInputs(){
+    function getInputs(edit=false, product_id=null){
         const data = {
-            title: document.querySelector('#titleProductInput').value,
-            description: document.querySelector('#descriptionProductInput').value,
-            cathegory: document.querySelector('#cathegoryProductInput').value,
-            term: document.querySelector('#termProductInput').value,
-            material: document.querySelector('#materialProductInput').value,
-            on_main_page: document.querySelector('#onMainProductInput').checked
+            title: document.querySelector(edit ? `#titleProductInputEdit-${product_id}` : '#titleProductInput').value,
+            description: document.querySelector(edit ? `#descriptionProductInputEdit-${product_id}` : '#descriptionProductInput').value,
+            cathegory: document.querySelector(edit ? `#cathegoryProductInputEdit-${product_id}` : '#cathegoryProductInput').value,
+            term: document.querySelector(edit ? `#termProductInputEdit-${product_id}` : '#termProductInput').value,
+            material: document.querySelector(edit ? `#materialProductInputEdit-${product_id}` : '#materialProductInput').value,
+            on_main_page: document.querySelector(edit ? `#onMainProductInputEdit-${product_id}` : '#onMainProductInput').checked
         }
         return data
     };
+
+    async function editProduct(product_id) {
+        if (confirm('Você deseja editar esse produto?')){
+            const data = getInputs(true, product_id);
+            fetchAPI(`api/products/edit`, {
+                id: product_id,
+                data: data
+            }).catch((err) => {
+                console.error(err);
+            });
+            window.location.reload();
+        }
+    }
 
     async function deleteImageCloudinary(publicId) {
         fetchAPI(`api/cloudinaryAPI/cloudinaryDelete`, {
@@ -129,35 +142,40 @@ export default function AdminProducts ({products}) {
                         return `wooden-images/${image.split('wooden-images/')[1].split('.')[0]}`;
                     });
                     const CarouselItems = product.images.map((image, index) => (
-                        <div key={index} style={{height: '100%', width: 'auto'}}>
+                        <div key={index} style={{height: '100%', width: 'auto', position: 'relative'}}>
                             <img src={image} style={{height: '10vh', width: 'auto'}}/>
                         </div>
                     ));
                     return(
                         <div key={index} className={styles.carouselItem}>
                             <form>
-                                <Carousel className={styles.carouselProductsAddArea} showStatus={false} showArrows={true} autoPlay={false} showThumbs={false} style={!productImagesCarousel ? {width: '160px', height: '100px', display: 'flex', alignItems: 'center'} : {width: 'auto', height: 'auto'}}>
-                                    {CarouselItems}
-                                </Carousel>
-                                <div className={styles.centerProductsArea}>
-                                    <p style={{color: '#fc8f00'}}>Título: </p>
-                                    <p style={{fontSize: 'small', marginBottom: '5px'}}>{product.title}</p>
-                                    <p style={{color: '#fc8f00'}}>Descrição: </p>
-                                    <textarea readOnly value={product.description}/>
+                                <div>
+                                    <Carousel className={styles.carouselProductsAddArea} showDots={false} showStatus={false} showArrows={true} autoPlay={false} showThumbs={false} style={!productImagesCarousel ? {width: '160px', height: '100px', display: 'flex', alignItems: 'center'} : {width: 'auto', height: 'auto'}}>
+                                        {CarouselItems}
+                                    </Carousel>
                                 </div>
                                 <div className={styles.centerProductsArea}>
+                                    <p style={{color: '#fc8f00'}}>Título: </p>
+                                    <input id={`titleProductInputEdit-${product._id}`} type="text" style={{fontSize: 'small', marginBottom: '5px'}} defaultValue={product.title} />
+                                    <p style={{color: '#fc8f00'}}>Descrição: </p>
+                                    <textarea defaultValue={product.description} id={`descriptionProductInputEdit-${product._id}`} />
+                                </div>
+                                <div className={styles.centerProductsArea} style={{width: '15%'}}>
                                     <p style={{color: '#fc8f00'}}>Categoria: </p>
-                                    <p style={{fontSize: 'small', marginBottom: '5px'}}>{product.cathegory}</p>
+                                    <input type="text" id={`cathegoryProductInputEdit-${product._id}`} style={{fontSize: 'small', marginBottom: '5px'}} defaultValue={product.cathegory} />
                                     <p style={{color: '#fc8f00'}}>Prazo: </p>
-                                    <p style={{fontSize: 'small'}}>{product.term}</p>
+                                    <input type="text" id={`termProductInputEdit-${product._id}`} style={{fontSize: 'small'}} defaultValue={product.term} />
                                 </div>
                                 <div className={styles.centerProductsArea}>
                                     <p style={{color: '#fc8f00'}}>Material: </p>
-                                    <p style={{fontSize: 'small', marginBottom: '5px'}}>{product.material}</p>
-                                    <p style={{color: '#fc8f00'}}>Página principal: </p>
-                                    <p style={{fontSize: 'small'}}>{product.on_main_page ? 'Sim' : 'Não'}</p>
+                                    <input type="text" id={`materialProductInputEdit-${product._id}`} style={{fontSize: 'small', marginBottom: '5px'}} defaultValue={product.material} />
+                                    <div style={{display: 'flex', width: '100%', alignItems: 'center'}}>
+                                        <p style={{color: '#fc8f00'}}>Página Principal: </p>
+                                        <input style={{width: '10%'}} type="checkbox" name="onMain" id={`onMainProductInputEdit-${product._id}`} defaultChecked={product.on_main_page ? true : false}/>
+                                    </div>
                                 </div>
                                 <div className={styles.formButtons}>
+                                    <div className={styles.submitButton} onClick={() => editProduct(product._id)}><i className="fa-solid fa-pen-to-square"></i></div>
                                     <div className={styles.cancelButton} onClick={() => deleteImage(product._id, publicId)}><i className="fa-solid fa-trash"></i></div>
                                 </div>
                             </form>

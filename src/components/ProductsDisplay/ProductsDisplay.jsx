@@ -17,7 +17,7 @@ export default function ProductsDisplay({ productsData }) {
                     </div>
                     <div className={styles.productInfo} style={{width: '30vw', minHeight: '65vh', marginBottom: '5%', marginTop: '10%' }}>
                         <h1 style={{marginBottom: '5%'}}>{product.title}</h1>
-                        <p style={{marginBottom: '5%'}}>{product.description}</p>
+                        <p style={{marginBottom: '5%', textAlign: 'justify'}}>{product.description}</p>
                         <button className={styles.productButton} onClick={()=>productRedirect(product._id)}>Ver mais</button>
                     </div>
                 </>
@@ -25,7 +25,7 @@ export default function ProductsDisplay({ productsData }) {
                 <>
                     <div className={styles.productInfo} style={{ width: '30vw', minHeight: '65vh', marginBottom: '5%', marginTop: '10%' }}>
                         <h1 style={{textAlign: 'right', marginBottom: '5%'}}>{product.title}</h1>
-                        <p style={{textAlign: 'right', marginBottom: '5%'}}>{product.description}</p>
+                        <p style={{textAlign: 'right', marginBottom: '5%', textAlign: 'justify'}}>{product.description}</p>
                         <div style={{width: '100%', display: 'flex', justifyContent: 'right'}}>
                             <button className={styles.productButton} onClick={()=>productRedirect(product._id)}>Ver mais</button>
                         </div>

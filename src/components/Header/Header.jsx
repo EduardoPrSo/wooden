@@ -29,7 +29,7 @@ export default function Header() {
                         <Link href='/trabalhos?page=1' style={{textDecoration: 'none'}}>
                             <p>Trabalhos</p>
                         </Link>
-                        <Link href='/' style={{textDecoration: 'none'}}>
+                        <Link href='/sobre' style={{textDecoration: 'none'}}>
                             <p>Sobre</p>
                         </Link>
                     </div>
@@ -49,7 +49,7 @@ export default function Header() {
                 <Link href='/contato' style={{textDecoration: 'none'}}>
                     <p>Contato</p>
                 </Link>
-                <Link href='/' style={{textDecoration: 'none'}}>
+                <Link href='/sobre' style={{textDecoration: 'none'}}>
                     <p>Sobre</p>
                 </Link>
             </div>
