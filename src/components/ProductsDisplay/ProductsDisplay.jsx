@@ -13,9 +13,11 @@ export default function ProductsDisplay({ productsData }) {
             {index % 2 === 0 ? (
                 <>
                     <div className={styles.productImage}>
-                        <img src={product.images[0]} alt="" style={{ width: '25vw', marginBottom: '10%', boxShadow: '5px 5px 10px #808080' }} />
+                        <div className={styles.imageCarousel}>
+                            <img src={product.images[0]} style={{ width: '25vw', height: '70vh', boxShadow: '5px 5px 10px #808080' }} />
+                        </div>
                     </div>
-                    <div className={styles.productInfo} style={{width: '30vw', minHeight: '65vh', marginBottom: '5%', marginTop: '10%' }}>
+                    <div className={styles.productInfo} style={{width: '30vw', height: '55vh', marginTop: '10%' }}>
                         <h1 style={{marginBottom: '5%'}}>{product.title}</h1>
                         <p style={{marginBottom: '5%', textAlign: 'justify'}}>{product.description}</p>
                         <button className={styles.productButton} onClick={()=>productRedirect(product._id)}>Ver mais</button>
@@ -23,7 +25,7 @@ export default function ProductsDisplay({ productsData }) {
                 </>
             ) : (
                 <>
-                    <div className={styles.productInfo} style={{ width: '30vw', minHeight: '65vh', marginBottom: '5%', marginTop: '10%' }}>
+                    <div className={styles.productInfo} style={{ width: '30vw', height: '55vh', marginTop: '10%' }}>
                         <h1 style={{textAlign: 'right', marginBottom: '5%'}}>{product.title}</h1>
                         <p style={{textAlign: 'right', marginBottom: '5%', textAlign: 'justify'}}>{product.description}</p>
                         <div style={{width: '100%', display: 'flex', justifyContent: 'right'}}>
@@ -31,7 +33,9 @@ export default function ProductsDisplay({ productsData }) {
                         </div>
                     </div>
                     <div className={styles.productImage}>
-                        <img src={product.images[0]} alt="" style={{ width: '25vw', marginBottom: '10%', boxShadow: '5px 5px 10px #808080' }} />
+                        <div className={styles.imageCarousel}>
+                            <img src={product.images[0]} style={{ width: '25vw', height: '70vh', boxShadow: '5px 5px 10px #808080' }} />
+                        </div>
                     </div>
                 </>
             )}

@@ -25,7 +25,7 @@ export default function Product({product}) {
                 <div className={styles.carouselContainer}>
                     <Carousel className={styles.carouselStyle} style={{margin: 0}} showStatus={false} showArrows={false} autoPlay={false} showIndicators={false} renderThumbs={renderCustomThumbs}>
                         {product && product.images.map((product, index) => (
-                            <div key={index} onClick={()=>setImageZoom(true)} style={{overflow: 'hidden'}}>
+                            <div key={index} onClick={()=>setImageZoom(true)} style={{overflow: 'hidden', borderBottom: '1px solid rgba(54, 54, 54, 0.349)', paddingBottom: '4%'}}>
                                 <img
                                     style={{ height: '50vh', width: 'auto', margin: 0}}
                                     src={product}
@@ -55,11 +55,11 @@ export default function Product({product}) {
                     </div>}
                 </div>
             </div>
-            <div className={styles.imageZoom} style={!imageZoom ?{diplay: 'none'} : {display: 'flex', flexDirection: 'colunm'}}>
+            <div className={styles.imageZoom} style={!imageZoom ? {diplay: 'none'} : {display: 'flex', flexDirection: 'colunm'}}>
                 <i className={`fa-solid fa-xmark ${styles.imageZoomCloseButtonIcon}`} onClick={()=>setImageZoom(false)}></i>
                 <Carousel className={styles.carouselZoomStyle} style={{margin: 0}} showStatus={false} showArrows={false} autoPlay={false} showIndicators={false} renderThumbs={renderCustomThumbs}>
                     {product && product.images.map((product, index) => (
-                        <div key={index} onClick={()=>setImageZoom(true)}>
+                        <div key={index} style={{borderBottom: '1px solid rgba(54, 54, 54, 0.349)', paddingBottom: '2%'}} onClick={()=>setImageZoom(true)}>
                             <img
                                 style={{ height: '60vh', width: 'auto', margin: 0}}
                                 src={product}

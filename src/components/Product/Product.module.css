@@ -83,7 +83,7 @@
     align-items: center;
     justify-content: center;
     width: 60vw;
-    height: 80vh;
+    height: 82vh;
     background-color: #f5f5f5;
     box-shadow: 5px 5px 10px #808080;
     border-radius: 5px;
@@ -103,7 +103,7 @@
     transition: .3s;
     color: grey;
     right: 7px;
-    top: 7px;
+    top: 4.5px;
 }
 
 .imageZoomCloseButtonIcon:hover{

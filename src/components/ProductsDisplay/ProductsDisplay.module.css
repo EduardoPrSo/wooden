@@ -38,7 +38,7 @@
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    height: 100%;
+    height: 70vh;
     padding: 3px;
 }
 
@@ -46,13 +46,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 65vh;
+    max-height: 65vh;
+}
+
+.imageCarousel{
+    width: 25vw;
+    max-height: 70vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 5px 5px 10px #808080;
 }
 
 .productInfo{
     display: inline-block;
     align-self: flex-start;
     flex-direction: column;
+    height: 70vh;
 }
 
 .productButton{
