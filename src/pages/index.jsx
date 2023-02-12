@@ -18,7 +18,7 @@ export default function Home({carouselImages, products}) {
 }
 
 export const getServerSideProps = async () => {
-    const responseCarousel = await api.get('/api/carouselImages/getCarouselImages');
+    const responseCarousel = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/carouselImages/getCarouselImages`);
     const carouselImages = responseCarousel.data;
 
     const responseProducts = await api.get('/api/products/getMainPageProducts');
