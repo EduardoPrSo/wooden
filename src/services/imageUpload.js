@@ -9,7 +9,7 @@ async function upload(image, folder='wooden-images'){
     formdata.append("api_key", apiKey);
 
     try {
-        const response = await axios.post(`https://api.cloudinary.com/v1_1/${folder}/image/upload`, formdata, {
+        const response = await api.post(`https://api.cloudinary.com/v1_1/${folder}/image/upload`, formdata, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

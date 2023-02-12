@@ -1,7 +1,7 @@
 import styles from './AdminProducts.module.css';
 import { useState, useEffect } from 'react';
 import { upload } from '@/services/imageUpload';
-import axios from 'axios';
+import { api } from '@/lib/axios';
 
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -76,7 +76,7 @@ export default function AdminProducts ({products}) {
     async function insertImage() {
         const formData = getInputs();
         try {
-            const response = await axios.post('api/products/insert', {
+            const response = await api.post(`/api/products/insert`, {
                 title: formData.title,
                 description: formData.description,
                 cathegory: formData.cathegory,
@@ -109,7 +109,7 @@ export default function AdminProducts ({products}) {
 
     async function deleteImageCloudinary(publicId) {
         try {
-            const response =  axios.post('api/cloudinaryAPI/cloudinaryDelete', {
+            const response =  api.post(`/api/cloudinaryAPI/cloudinaryDelete`, {
                 public_id: publicId
             }, {
                 headers: {
@@ -125,7 +125,7 @@ export default function AdminProducts ({products}) {
     async function deleteImage(id, publicId) {
         if (confirm('Você deseja deletar esse produto?')){
             try {
-                const response = await axios.post('api/products/delete', {
+                const response = await api.post(`/api/products/delete`, {
                     id: id
                 }, {
                     headers: {

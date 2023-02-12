@@ -3,8 +3,7 @@ import AdminPage from '@/components/AdminPage/AdminPage'
 import AdminLogin from '@/components/AdminLogin/AdminLogin'
 import { setCookie, parseCookies } from 'nookies';
 import { useState } from 'react';
-
-import axios from 'axios'
+import { api } from '@/lib/axios';
 
 export default function Admin({carouselImages, products, logged}) {
     const [isLogged, setIsLogged] = useState(logged);
@@ -34,10 +33,10 @@ export default function Admin({carouselImages, products, logged}) {
 export const getServerSideProps = async (context) => {
     const logged = parseCookies(context).IS_LOGGED_WOODEN_ADMIN || false;
 
-    const responseCarousel = await axios.get('http://localhost:3000/api/carouselImages/getCarouselImages');
+    const responseCarousel = await api.get('/api/carouselImages/getCarouselImages');
     const carouselImages = responseCarousel.data;
 
-    const responseProducts = await axios.get('http://localhost:3000/api/products/getAllProducts');
+    const responseProducts = await api.get('/api/products/getAllProducts');
     const products = responseProducts.data;
 
     return {

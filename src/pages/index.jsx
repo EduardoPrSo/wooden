@@ -3,8 +3,7 @@ import MainCarousel from '@/components/MainCarousel/MainCarousel'
 import ProductsDisplay from '@/components/ProductsDisplay/ProductsDisplay'
 import Partners from '@/components/Partners/Partners'
 import Footer from '@/components/Footer/Footer'
-
-import axios from 'axios'
+import { api } from '@/lib/axios';
 
 export default function Home({carouselImages, products, teste}) {
     return (
@@ -19,10 +18,10 @@ export default function Home({carouselImages, products, teste}) {
 }
 
 export const getServerSideProps = async () => {
-    const responseCarousel = await axios.get('http://localhost:3000/api/carouselImages/getCarouselImages');
+    const responseCarousel = await api.get('/api/carouselImages/getCarouselImages');
     const carouselImages = responseCarousel.data;
 
-    const responseProducts = await axios.get('http://localhost:3000/api/products/getMainPageProducts');
+    const responseProducts = await api.get('/api/products/getMainPageProducts');
     const products = responseProducts.data;
 
     return {

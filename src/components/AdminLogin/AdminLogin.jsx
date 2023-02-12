@@ -1,11 +1,11 @@
 import styles from './AdminLogin.module.css';
-import axios from 'axios'
+import { api } from "@/lib/axios";
 
 export default function AdminLogin ({onLogin}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('api/auth/login', {
+            const response = await api.post(`/api/auth/login`, {
                 username: document.querySelector('#loginUsername').value,
                 password: document.querySelector('#loginPassword').value
             });

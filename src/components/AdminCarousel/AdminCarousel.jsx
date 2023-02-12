@@ -1,7 +1,7 @@
 import styles from './AdminCarousel.module.css';
 import { useState, useEffect } from 'react';
 import { upload } from '@/services/imageUpload';
-import axios from 'axios';
+import { api } from '@/lib/axios';
 
 export default function AdminCarousel ({carouselImages}) {
 
@@ -59,7 +59,7 @@ export default function AdminCarousel ({carouselImages}) {
 
     async function insertImage() {
         try {
-            const response = await axios.post('api/carouselImages/insert', {
+            const response = await api.post(`/api/carouselImages/insert`, {
                 url: imageUrl
             }, {
                 headers: {
@@ -74,7 +74,7 @@ export default function AdminCarousel ({carouselImages}) {
 
     async function deleteImageCloudinary(publicId) {
         try {
-            const response = await axios.post('api/cloudinaryAPI/cloudinaryDelete', {
+            const response = await api.post(`/api/cloudinaryAPI/cloudinaryDelete`, {
                 public_id: publicId
             }, {
                 headers: {
@@ -90,7 +90,7 @@ export default function AdminCarousel ({carouselImages}) {
     async function deleteImage(id, publicId) {
         if (confirm('Você deseja deletar essa foto?')){
             try {
-                const response = await axios.post('api/carouselImages/delete', {
+                const response = await api.post(`/api/carouselImages/delete`, {
                     id: id
                 }, {
                     headers: {

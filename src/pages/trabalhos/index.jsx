@@ -1,8 +1,7 @@
 import Header from "@/components/Header/Header";
 import ProductsSession from "@/components/ProductsSession/ProductsSession";
 import Footer from "@/components/Footer/Footer";
-
-import axios from 'axios'
+import { api } from "@/lib/axios";
 
 export default function Trabalhos({products}){
     return(
@@ -15,7 +14,7 @@ export default function Trabalhos({products}){
 }
 
 export const getServerSideProps = async () => {
-    const response = await axios.get('http://localhost:3000/api/products/getAllProducts');
+    const response = await api.get('/api/products/getAllProducts');
     const products = response.data;
 
     return {
