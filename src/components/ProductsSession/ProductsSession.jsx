@@ -17,10 +17,10 @@ export default function ProductsSession({productsData}){
     const nProduts = windowWidth > 900 ? 9 : 6;
 
     for (let i = 0; i < productsData.length; i += nProduts) {
-        productsDivisor.push(productsData.slice(i, i + nProduts));
+       productsDivisor.push(productsData.slice(i, i + nProduts));
     }
 
-    const products = productsDivisor[page-1].map((product, index) => {
+    const products = productsDivisor.length > 0 ? productsDivisor[page-1].map((product, index) => {
         return(
             <div key={index} className={styles.product} onClick={()=>productRedirect(product._id)}>
                 <div className={styles.imageContainer}>
@@ -30,7 +30,7 @@ export default function ProductsSession({productsData}){
                 <h3 style={{marginLeft: '10px', fontWeight: '600', fontSize: '1rem'}}>{product.title}</h3>
             </div>
         )
-    })
+    }) : null;
 
     function productRedirect(id){
         router.push(`/produto/${id}`)
