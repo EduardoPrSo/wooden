@@ -77,6 +77,7 @@ export default function ProductsSession({productsData}){
 
     return(
         <div className={styles.mainContainer}>
+            <h2 className={styles.mainTitle}>TODOS OS TRABALHOS</h2>
             <div className={styles.productsContainer}>
                 <div className={styles.productsDisplay}>
                     {products}

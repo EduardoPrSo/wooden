@@ -7,16 +7,22 @@
     height: auto;
 }
 
+.mainTitle{
+    width: 30%;
+    padding-bottom: 1%;
+    border-bottom: 1px solid grey;
+    text-align: center;
+    margin: 2% 0 2% 0;
+}
+
 .productsContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    padding: 2% 5% 2% 5%;
+    padding: 0 5% 2% 5%;
     width: 60vw;
     height: 100%;
-    border-top: 1px solid rgba(0, 0, 0, 0.315);
-    margin-top: 5%;
 }
 
 .productsDisplay{
@@ -99,10 +105,19 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
+        justify-content: flex-start;
         width: 100vw;
-        height: 80vh;
+        min-height: 85vh;
+        height: auto;
         overflow-x: scroll;
+    }
+
+    .mainTitle{
+        width: 80%;
+        padding-bottom: 1%;
+        border-bottom: 1px solid grey;
+        text-align: center;
+        margin: 5% 0 5% 0;
     }
 
     .productsContainer{

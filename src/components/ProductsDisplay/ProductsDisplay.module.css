@@ -5,11 +5,16 @@
     justify-content: center;
     width: 100%;
     height: auto;
-    padding: 3% 0 3% 0;
+    padding-bottom: 3%;
+    overflow: hidden;
 }
 
-.mainContainer h1{
-    margin: 0;
+.mainTitle{
+    width: 30%;
+    padding-bottom: 1%;
+    border-bottom: 1px solid grey;
+    text-align: center;
+    margin-bottom: 3%;
 }
 
 .productsContainer{
@@ -61,8 +66,8 @@
 }
 
 .productInfo{
-    display: inline-block;
-    align-self: flex-start;
+    display: flex;
+    justify-content: center;
     flex-direction: column;
     height: 70vh;
 }
@@ -96,6 +101,14 @@
         padding: 3% 0 3% 0;
     }
     
+    .mainTitle{
+        width: 80%;
+        padding-bottom: 1%;
+        border-bottom: 1px solid grey;
+        text-align: center;
+        margin-bottom: 0;
+    }
+
     .mainContainer h1{
         margin: 0;
     }
@@ -113,41 +126,35 @@
         flex-direction: column;
         height: auto;
         margin-top: 30px;
-        background-color: white;
+        width: 85%;
+        height: 40vh;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
         border-radius: 5px;
         box-shadow: 5px 5px 20px #808080;
-        width: 95%;
-        height: 60vh;
-        padding: 0;
     }
 
     .productImage{
         height: 40vh;
         width: 100%;
         overflow: inherit;
-        margin-top: 5%;
-    }
-
-    .imageCarousel{
-        width: 80%;
-        height: 40vh;
-        box-shadow: none;
         border-radius: 5px;
     }
 
-    .productInfo{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
+    .imageCarousel{
         width: 100%;
         height: auto;
-        margin: none;
+        box-shadow: none;
     }
 
-    .productInfo h2{
+    .productDiv h2{
         align-self: flex-start;
         margin-left: 3%;
+        position: absolute;
+        color: white;
+        bottom: 0;
+        left: 0;
     }
 
     .productButton{

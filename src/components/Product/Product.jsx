@@ -67,7 +67,7 @@ export default function Product({product}) {
                     {product && product.images.map((product, index) => (
                         <div key={index} style={{borderBottom: '1px solid rgba(54, 54, 54, 0.349)', paddingBottom: '2%'}} onClick={()=>setImageZoom(true)}>
                             <img
-                                style={{ height: '60vh', width: '100%', margin: 0}}
+                                style={{ height: '60vh', width: 'auto', margin: 0}}
                                 src={product}
                             />
                         </div>

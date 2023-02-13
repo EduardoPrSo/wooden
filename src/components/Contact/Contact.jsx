@@ -44,9 +44,7 @@ export default function Contact () {
 
     return (
         <div className={styles.mainContainer}>
-            <div className={styles.mainTitle}>
-                <h1>Entre em contato conosco!</h1>
-            </div>
+            <h2 className={styles.mainTitle}>CONTATO</h2>
             <div className={styles.mainContact}>
                 <div className={styles.emailContactContainer}>
                     <h3 style={{color: 'black'}}><i className="fa-sharp fa-solid fa-envelope" style={{color: '#fc8f00'}}></i> Envie um email</h3>

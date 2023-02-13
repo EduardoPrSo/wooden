@@ -13,9 +13,7 @@ export default function AboutPage () {
 
     return (
         <div className={styles.mainContainer}>
-            <div className={styles.mainTitle}>
-                <h1>Sobre nós</h1>
-            </div>
+            <h2 className={styles.mainTitle}>SOBRE NÓS</h2>
             <div className={styles.aboutContainer}>
                 <div className={styles.aboutinfoContainer}>
                     <div className={styles.allContacts}>
