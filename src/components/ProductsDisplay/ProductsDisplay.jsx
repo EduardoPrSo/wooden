@@ -6,14 +6,11 @@ export default function ProductsDisplay({ productsData }) {
     const router = useRouter();
     const [windowWidth, setWindowWidth] = useState(0);
     const [windowHeight, setWindowHeight] = useState(0);
-    const [windowHeight, setWindowHeight] = useState(0);
     const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
         setWindowWidth(window.innerWidth)
         setWindowHeight(window.innerHeight)
-        setWindowWidth(window.innerWidth);
-        setWindowHeight(window.innerHeight);
     }, [])
 
     useEffect(() => {
