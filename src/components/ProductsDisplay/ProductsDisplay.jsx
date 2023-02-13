@@ -26,7 +26,7 @@ export default function ProductsDisplay({ productsData }) {
                     <div className={styles.productInfo} style={{width: '30vw', height: '55vh', marginTop: '10%' }}>
                         <h1 style={{marginBottom: '5%'}}>{product.title}</h1>
                         <p style={{marginBottom: '5%', textAlign: 'justify'}}>{product.description}</p>
-                        <button className={styles.productButton} onClick={()=>productRedirect(product._id)}>Ver mais</button>
+                        <button className={styles.productButton} onClick={()=>productRedirect(product._id)}>Saiba mais</button>
                     </div>
                 </>
             ) : (
@@ -35,7 +35,7 @@ export default function ProductsDisplay({ productsData }) {
                         <h1 style={{textAlign: 'right', marginBottom: '5%'}}>{product.title}</h1>
                         <p style={{textAlign: 'right', marginBottom: '5%', textAlign: 'justify'}}>{product.description}</p>
                         <div style={{width: '100%', display: 'flex', justifyContent: 'right'}}>
-                            <button className={styles.productButton} onClick={()=>productRedirect(product._id)}>Ver mais</button>
+                            <button className={styles.productButton} onClick={()=>productRedirect(product._id)}>Saiba mais</button>
                         </div>
                     </div>
                     <div className={styles.productImage}>
@@ -53,7 +53,7 @@ export default function ProductsDisplay({ productsData }) {
                     </div>
                     <div className={styles.productInfo} style={{width: '100%', marginTop: '10%' }}>
                         <h2 style={{marginBottom: '5%'}}>{product.title}</h2>
-                        <button className={styles.productButton} onClick={()=>productRedirect(product._id)}>Ver mais</button>
+                        <button className={styles.productButton} onClick={()=>productRedirect(product._id)}>Saiba mais</button>
                     </div>
                 </>
             )}
