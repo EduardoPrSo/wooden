@@ -1,8 +1,14 @@
 import styles from './ProductsDisplay.module.css'
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 export default function ProductsDisplay({ productsData }) {
     const router = useRouter();
+    const [windowWidth, setWindowWidth] = useState(0);
+
+    useEffect(() => {
+        setWindowWidth(window.innerWidth)
+    }, [])
 
     function productRedirect(id){
         router.push(`/produto/${id}`)
@@ -10,7 +16,7 @@ export default function ProductsDisplay({ productsData }) {
 
     const displayProducts = productsData.map((product, index) => (
         <div key={index} className={styles.productDiv}>
-            {index % 2 === 0 ? (
+            {windowWidth > 900 ? index % 2 === 0 ? (
                 <>
                     <div className={styles.productImage}>
                         <div className={styles.imageCarousel}>
@@ -36,6 +42,18 @@ export default function ProductsDisplay({ productsData }) {
                         <div className={styles.imageCarousel}>
                             <img src={product.images[0]} style={{ width: '25vw', height: '70vh', boxShadow: '5px 5px 10px #808080' }} />
                         </div>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div className={styles.productImage}>
+                        <div className={styles.imageCarousel}>
+                            <img src={product.images[0]} style={{ width: '100%', height: '50vh', boxShadow: '5px 5px 10px #808080' }} />
+                        </div>
+                    </div>
+                    <div className={styles.productInfo} style={{width: '100%', marginTop: '10%' }}>
+                        <h2 style={{marginBottom: '5%'}}>{product.title}</h2>
+                        <button className={styles.productButton} onClick={()=>productRedirect(product._id)}>Ver mais</button>
                     </div>
                 </>
             )}

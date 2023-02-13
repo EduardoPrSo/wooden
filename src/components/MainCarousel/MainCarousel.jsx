@@ -6,9 +6,9 @@ export default function MainCarousel({carouselImages}) {
 	const globalHeight = "70vh";
 
 	const CarouselItems = carouselImages.map((image, index) => (
-		<div key={index} style={{ width: '100%', height: globalHeight }}>
+		<div key={index} className={styles.carouselImageDiv}>
 			<img
-				style={{ width: '100%', height: globalHeight }}
+				className={styles.carouselImage}
 				src={image.url}
 			/>
 		</div>

@@ -84,3 +84,45 @@
     color: white;
     background-color: #fc8f00;
 }
+
+@media (max-width: 900px)  {
+    .productDiv{
+        flex-direction: column;
+        height: auto;
+        margin-top: 30px;
+    }
+
+    .productImage{
+        height: 50vh;
+        width: 100%;
+        overflow: inherit;
+    }
+
+    .imageCarousel{
+        width: 95%;
+        height: 50vh;
+    }
+
+    .productInfo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: auto;
+    }
+
+    .productInfo h2{
+        align-self: flex-start;
+    }
+
+    .productButton{
+        width: 95%;
+        margin-bottom: 30px;
+    }
+
+    .productButton:active {
+        color: white;
+        background-color: #fc8f00;
+    }
+}

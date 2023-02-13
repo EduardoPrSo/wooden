@@ -11,12 +11,9 @@
 .mainTitle{
     display: flex;
     justify-content: center;
-    height: 20%;
+    height: 15%;
     width: 100%;
-    color: #f5f5f5;
     color: #fc8f00;
-    background-color: #fc8f00;
-    background-image: url('https://img.freepik.com/fotos-premium/textura-de-fundo-de-parede-de-prancha-de-madeira-branca-de-madeira-de-casca-com-padrao-natural-antigo_38607-1200.jpg');
     padding-top: 2%;
 }
 
@@ -24,11 +21,9 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 60%;
+    height: 70%;
     width: 45%;
     background-color: #f5f5f5;
-    position: absolute;
-    top: 28%;
     border-radius: 5px;
     box-shadow: 5px 5px 20px #808080;
 }
@@ -148,4 +143,56 @@
     outline: 0;
     box-shadow: 5px 5px 20px #4e4e4e;
     transition: .3s;
+}
+
+@media ( max-width: 900px ) {
+    .mainContainer{
+        height: auto;
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .mainTitle{
+        width: 100%;
+        font-size: 3vw;
+        padding: 5% 0 5% 0;
+    }
+
+    .mainContact{
+        flex-direction: column;
+        height: 70%;
+        width: 95%;
+    }
+
+    .emailContactContainer{
+        height: 40vh;
+        width: 90%;
+        margin-top: 5%;
+    }
+
+    .emailContactLabel{
+        width: 70%;
+        height: 4vh;
+        border-radius: 5px;
+        border: none;
+        padding: 0 15px 0 15px;
+        border: 1px solid #fc8f00;
+        transition: .3s;
+    }
+    
+    .emailContactTextArea{
+        width: 70%;
+        height: 10vh;
+        resize: none;
+        border-radius: 5px;
+        border: none;
+        padding: 15px 15px 0 15px;
+        border: 1px solid #fc8f00;
+        transition: .3s;
+    }
+
+    .otherContacts{
+        height: 30vh;
+        width: 90%;
+    }
 }

@@ -52,7 +52,7 @@ export default function Contact () {
                     <h3 style={{color: 'black'}}><i className="fa-sharp fa-solid fa-envelope" style={{color: '#fc8f00'}}></i> Envie um email</h3>
                     <motion.div className={styles.emailAlert} style={{display: emailAlert ? 'flex' : 'none'}}
                         animate={{y: emailAlert ? -30 : -300, opacity: emailAlert ? 1 : 0}}>
-                        <h2>{emailAlertTitle}</h2>
+                        <h3>{emailAlertTitle}</h3>
                     </motion.div>
                     <form className={styles.emailContact} onSubmit={sendEmail}>
                         <input className={styles.emailContactLabel} type="text" name="name" placeholder="Seu nome" />

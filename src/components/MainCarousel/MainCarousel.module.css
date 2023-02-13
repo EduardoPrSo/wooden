@@ -11,6 +11,36 @@
     width: 100%;
 }
 
-.nextArrow{
-    color: red;
+.carouselImageDiv{
+    width: 100%;
+    height: 70vh;
+}
+
+.carouselImage{
+    width: 100%;
+    height: 70vh;
+}
+
+@media ( max-width: 900px ) {
+    .carouselContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10%;
+        width: 100vw;
+    }
+    .carouselStyle{
+        height: auto;
+        width: 100%;
+    }
+
+    .carouselImageDiv{
+        width: 100%;
+        height: auto;
+    }
+    
+    .carouselImage{
+        width: 100%;
+        height: 22vh;
+    }
 }

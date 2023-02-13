@@ -13,6 +13,9 @@ export default function AboutPage () {
 
     return (
         <div className={styles.mainContainer}>
+            <div className={styles.mainTitle}>
+                <h1>Sobre nós</h1>
+            </div>
             <div className={styles.aboutContainer}>
                 <div className={styles.aboutinfoContainer}>
                     <div className={styles.allContacts}>
@@ -30,7 +33,7 @@ export default function AboutPage () {
                 </div>
                 <div className={styles.mapContainer}>
                     {isLoaded && <GoogleMap
-                        mapContainerStyle={{width: '100%', height: '90%', borderRadius: '5px'}}
+                        mapContainerStyle={{width: '100%', height: '100%', borderRadius: '5px'}}
                         center={{
                             lat: -25.4415903,
                             lng: -49.2320057,

@@ -1,16 +1,23 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './ProductsSession.module.css'
 
 export default function ProductsSession({productsData}){
+    const [windowWidth, setWindowWidth] = useState(0);
     const router = useRouter();
     const { page = 1 } = router.query;
 
+    useEffect(() => {
+        setWindowWidth(window.innerWidth)
+    }, [])
+
     const productsDivisor = [];
     
-    for (let i = 0; i < productsData.length; i += 9) {
-        productsDivisor.push(productsData.slice(i, i + 9));
+    const nProduts = windowWidth > 900 ? 9 : 6;
+
+    for (let i = 0; i < productsData.length; i += nProduts) {
+        productsDivisor.push(productsData.slice(i, i + nProduts));
     }
 
     const products = productsDivisor[page-1].map((product, index) => {
