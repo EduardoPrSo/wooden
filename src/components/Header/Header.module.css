@@ -94,6 +94,7 @@
     }
 
     .headerIcons, .dropdownIcon{
+        font-size: 18px;
         color: grey;
         transition: .3s;
         margin: 0;
@@ -103,5 +104,27 @@
         cursor: pointer;
         color: #fc8f00;
         transition: color .3s ease-in-out;
+    }
+
+    .dropdown{
+        display: none;
+        flex-direction: column;
+        justify-content: flex-start;
+        position: absolute;
+        background-color: #F9F6F2;
+        box-shadow: none;
+        width: 30vw;
+        height: 100vh;
+        padding: 20%;
+        border-radius: 0;
+        color: black;
+        right: 0;
+        padding-top: 10%;
+        box-shadow: 5px 5px 5px #808080;
+        transition: .5s;
+    }
+
+    .dropdown p{
+        margin-top: 20%;
     }
 }
