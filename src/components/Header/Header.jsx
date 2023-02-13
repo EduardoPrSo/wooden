@@ -36,7 +36,7 @@ export default function Header() {
                         <p onClick={()=>{setMenu(!menu);router.push('/sobre')}}><i className="fa-solid fa-address-card"></i> Sobre</p>
                     </div>
                 </div>
-                <Image src={Logo} alt="Logo Wooden" height={80} width={200}/>
+                <Image onClick={()=>{router.push('/')}} src={Logo} alt="Logo Wooden" height={80} width={200}/>
                 <p style={windowWidth > 900 ? {display: scrollY > 50 ? "block" : "none", trasition: "display 1s ease-in-out"} : {}} onClick={()=>{router.push('/contato')}} className={styles.headerIcons}><i className="fa-solid fa-phone"></i></p>
             </div>
             <div className={styles.options}>

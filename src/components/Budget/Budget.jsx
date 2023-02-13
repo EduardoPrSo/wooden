@@ -6,9 +6,7 @@ export default function Budget() {
     return (
         <>
             <div className={styles.mainContainer}>
-                <div className={styles.blurContainer}>
-
-                </div>
+                <div className={styles.blurContainer}></div>
                 <div className={styles.budgetContent}>
                     <h1 style={{color: 'white'}} onClick={()=>router.push('/contato')}>Clique aqui!</h1>
                     <p>E fale conosco para fazer seu orçamento <span style={{color: 'white'}}>agora!</span></p>
