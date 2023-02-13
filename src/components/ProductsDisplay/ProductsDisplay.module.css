@@ -109,12 +109,6 @@
         padding: 3px;
     }
 
-    .productsRow{
-        flex-direction: row;
-        width: auto;
-        overflow: hidden;
-    }
-
     .productDiv{
         flex-direction: column;
         height: auto;
@@ -122,6 +116,9 @@
         background-color: white;
         border-radius: 5px;
         box-shadow: 5px 5px 20px #808080;
+        width: 95%;
+        height: 60vh;
+        padding: 0;
     }
 
     .productImage{

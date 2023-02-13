@@ -56,11 +56,11 @@
 .dropdown{
     display: none;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     position: absolute;
     background-color: #F9F6F2;
     width: 110px;
-    height: auto;
+    height: 10vh;
     padding: 20%;
     box-shadow: 5px 5px 20px #808080;
     border-radius: 5px;
