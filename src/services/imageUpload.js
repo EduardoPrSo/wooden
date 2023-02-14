@@ -7,7 +7,7 @@ async function upload(image, folder='wooden-images'){
     formdata.append("file", image);
     formdata.append("upload_preset", folder);
     formdata.append("api_key", apiKey);
-    formdata.append("quality", 'q_auto:good');
+    formdata.append("quality", 'w_400,q_auto,f_auto');
 
     const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
         method: "POST",
