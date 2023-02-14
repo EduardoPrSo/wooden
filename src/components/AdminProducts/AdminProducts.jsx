@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { upload } from '@/services/imageUpload';
 import { fetchAPI } from '@/lib/fetchAPI';
 
+import Resizer from "react-image-file-resizer";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -44,7 +45,6 @@ export default function AdminProducts ({products}) {
         const files = e.target.files;
         for (let i = 0; i < files.length; i++) {
             const reader = new FileReader();
-        
             reader.onload = (onLoadEvent) => {
                 setProductImagesSrc(prevState => [...prevState, onLoadEvent.target.result]);
                 setProductImages(prevState => [...prevState, files[i]]);
@@ -56,7 +56,29 @@ export default function AdminProducts ({products}) {
     async function submitEvent() {
         if (JSON.stringify(productImages) !== JSON.stringify([])){
             for (let image in productImages) {
-                const url = await upload(productImages[image]);
+
+                const width = productImages[image].width;
+                const height = productImages[image].height;
+                const aspectRatio = width / height;
+
+                const resizeFile = (file) =>
+                    new Promise((resolve) => {
+                        Resizer.imageFileResizer(
+                            file,
+                            500,
+                            500 / aspectRatio,
+                            "JPEG",
+                            100,
+                            0,
+                            (uri) => {
+                                resolve(uri);
+                            },
+                            "base64"
+                        );
+                    });
+
+                const resizedImage = await resizeFile(productImages[image]);
+                const url = await upload(resizedImage);
                 setProductImagesUrl(prevState => [...prevState, url]);
             }
             window.location.reload();

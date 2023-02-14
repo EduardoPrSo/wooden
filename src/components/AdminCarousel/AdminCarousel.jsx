@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { upload } from '@/services/imageUpload';
 import { fetchAPI } from '@/lib/fetchAPI';
 
+import Resizer from "react-image-file-resizer";
+
 export default function AdminCarousel ({carouselImages}) {
 
     const [image, setImage] = useState();
@@ -41,7 +43,27 @@ export default function AdminCarousel ({carouselImages}) {
         e.preventDefault();
         if (image){
             try {
-                const url = await upload(image);
+                const width = image.width;
+                const height = image.height;
+                const aspectRatio = width / height;
+
+                const resizeFile = (file) =>
+                    new Promise((resolve) => {
+                        Resizer.imageFileResizer(
+                            file,
+                            1920,
+                            1920 / aspectRatio,
+                            "JPEG",
+                            100,
+                            0,
+                            (uri) => {
+                                resolve(uri);
+                            },
+                            "base64"
+                        );
+                    });
+                const resizedImage = await resizeFile(image);
+                const url = await upload(resizedImage);
                 setImageUrl(url);
                 window.location.reload();
             } catch (error) {
