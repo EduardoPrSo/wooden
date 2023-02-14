@@ -30,7 +30,7 @@ export default function Header() {
             <div className={styles.classContainer} style={windowWidth > 900 ? {borderBottom: scrollY > 50 ? "1px solid #fc8f00" : "none", trasition: "border-bottom 1s ease-in-out", boxShadow: scrollY > 50 ? '5px 5px 20px #808080' : 'none'} : {}}>
                 <div className={styles.dropdownContainer} style={windowWidth > 900 ? {display: scrollY > 50 ? "block" : "none", trasition: "display 1s ease-in-out"} : {}}>
                     <p className={styles.dropdownIcon} onClick={()=> windowWidth < 900 && setMenu(!menu)}><i className="fa-solid fa-bars"></i></p>
-                    <div className={styles.dropdown} style={windowWidth < 900 ? {transform: !menu ? 'translateX(-100%)' : 'translateX(+20%)', transition: 'transition: .3s'} : {}}>
+                    <div className={styles.dropdown} style={windowWidth < 900 ? {transform: !menu ? 'translateX(-100%)' : 'translateX(-30%)', transition: 'transition: .3s'} : {}}>
                         <p onClick={()=>{setMenu(!menu);router.push('/')}}><i className="fa-solid fa-house"></i> Home</p>
                         <p onClick={()=>{setMenu(!menu);router.push('/trabalhos')}}><i className="fa-solid fa-chair"></i> Trabalhos</p>
                         <p onClick={()=>{setMenu(!menu);router.push('/sobre')}}><i className="fa-solid fa-address-card"></i> Sobre</p>

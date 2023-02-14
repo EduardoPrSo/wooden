@@ -8,7 +8,7 @@ async function upload(image, folder='wooden-images'){
     formdata.append("upload_preset", folder);
     formdata.append("api_key", apiKey);
 
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload/q_60`, {
         method: "POST",
         body: formdata
     });
