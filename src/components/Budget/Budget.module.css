@@ -10,7 +10,7 @@
     width: 100%;
     background-image: url('/images/bg.jpg');
     background-size: cover;
-    filter: blur(6px);
+    filter: blur(7px);
 }
 
 .budgetContent{
@@ -18,7 +18,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(252, 149, 31, 0.301);
     height: 100%;
     width: 100%;
     position: absolute;
