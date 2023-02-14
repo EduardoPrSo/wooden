@@ -11,6 +11,10 @@
     top: 0;
 }
 
+.imageLogo:hover{
+    cursor: pointer;
+}
+
 .options{
     width: 100vw;
     height: 6vh;
