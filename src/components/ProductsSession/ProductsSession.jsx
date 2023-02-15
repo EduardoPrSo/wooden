@@ -90,11 +90,13 @@ export default function ProductsSession({productsData}){
 
     return(
         <>
-            <div className={styles.productContainer} style={showProduct ? {transform: 'scale(1)', transition: 'transform .5s'} : {transform: 'scale(0)', transition: 'transform .5s'}}>
-                <i className={`fa-solid fa-xmark ${styles.showProductCloseButtonIcon}`} onClick={()=>{setShowProduct(false);setShowProductID();}}></i>
-                <Product product={showProduct && showProductID}/>
+            <div className={styles.productContainerBackground} style={showProduct ? {transform: 'scale(1)', backgroundColor: 'rgba(0, 0, 0, 0.425)'} : {transform: 'scale(0)', transition: 'transform .7s', backgroundColor: 'transparent'}}>
+                <div className={styles.productContainer} style={showProduct ? {transform: 'scale(1)', transition: 'transform .5s'} : {transform: 'scale(0)', transition: 'transform .5s'}}>
+                    <i className={`fa-solid fa-xmark ${styles.showProductCloseButtonIcon}`} onClick={()=>{setShowProduct(false);setShowProductID();}}></i>
+                    <Product product={showProduct && showProductID}/>
+                </div>
             </div>
-            <div className={styles.mainContainer}>
+            <div className={styles.mainContainer} style={showProduct ? {filter: 'blur(5px)'} : {}}>
                 <h2 className={styles.mainTitle}>TODOS OS TRABALHOS</h2>
                 <div className={styles.productsContainer}>
                     <div className={styles.productsDisplay}>

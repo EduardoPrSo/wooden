@@ -93,6 +93,10 @@
 }
 
 @media ( max-width: 900px ) {
+    .classContainer{
+        box-shadow: 3px 3px 10px #808080;
+    }
+
     .options {
         display: none;
     }

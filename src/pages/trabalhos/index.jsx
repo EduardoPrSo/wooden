@@ -1,3 +1,4 @@
+import styles from './Works.module.css';
 import Header from "@/components/Header/Header";
 import ProductsSession from "@/components/ProductsSession/ProductsSession";
 import Footer from "@/components/Footer/Footer";
@@ -5,7 +6,7 @@ import { fetchAPI} from "@/lib/fetchAPI";
 
 export default function Trabalhos({products}){
     return(
-        <div>
+        <div className={styles.mainWorks}>
             <Header />
             <ProductsSession productsData={products} />
             <Footer />
