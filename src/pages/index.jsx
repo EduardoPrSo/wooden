@@ -3,7 +3,6 @@ import MainCarousel from '@/components/MainCarousel/MainCarousel'
 import ProductsDisplay from '@/components/ProductsDisplay/ProductsDisplay'
 import Partners from '@/components/Partners/Partners'
 import Budget from '@/components/Budget/Budget'
-import Footer from '@/components/Footer/Footer'
 import { fetchAPI } from '@/lib/fetchAPI';
 
 export default function Home({carouselImages, products}) {
