@@ -2,9 +2,14 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './ProductsSession.module.css'
+import Product from '../Product/Product.jsx';
+import { fetchAPI } from '@/lib/fetchAPI';
 
 export default function ProductsSession({productsData}){
     const [windowWidth, setWindowWidth] = useState(0);
+    const [showProduct, setShowProduct] = useState(false);
+    const [showProductID, setShowProductID] = useState();
+
     const router = useRouter();
     const { page = 1 } = router.query;
 
@@ -32,8 +37,16 @@ export default function ProductsSession({productsData}){
         )
     }) : null;
 
-    function productRedirect(id){
-        router.push(`/produto/${id}`)
+    async function productRedirect(id){
+        if (windowWidth > 900){
+            setShowProduct(true);
+            const product = await fetchAPI('api/products/getProduct',{
+                id: id
+            });
+            setShowProductID(product);
+        } else {
+            router.push(`/produto/${id}`)
+        }
     }
 
     const PageButtons = ({ productsDivisor, page, styles }) => {
@@ -76,16 +89,22 @@ export default function ProductsSession({productsData}){
     };
 
     return(
-        <div className={styles.mainContainer}>
-            <h2 className={styles.mainTitle}>TODOS OS TRABALHOS</h2>
-            <div className={styles.productsContainer}>
-                <div className={styles.productsDisplay}>
-                    {products}
-                </div>
-                <div className={styles.pageButtons}>
-                    <PageButtons productsDivisor={productsDivisor} page={page} styles={styles} />
+        <>
+            <div className={styles.productContainer} style={showProduct ? {transform: 'scale(1)', transition: 'transform .5s'} : {transform: 'scale(0)', transition: 'transform .5s'}}>
+                <i className={`fa-solid fa-xmark ${styles.showProductCloseButtonIcon}`} onClick={()=>{setShowProduct(false);setShowProductID();}}></i>
+                <Product product={showProduct && showProductID}/>
+            </div>
+            <div className={styles.mainContainer}>
+                <h2 className={styles.mainTitle}>TODOS OS TRABALHOS</h2>
+                <div className={styles.productsContainer}>
+                    <div className={styles.productsDisplay}>
+                        {products}
+                    </div>
+                    <div className={styles.pageButtons}>
+                        <PageButtons productsDivisor={productsDivisor} page={page} styles={styles} />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
