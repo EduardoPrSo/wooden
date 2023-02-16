@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Link from 'next/link';
 import styles from './Header.module.css'
 import Image from 'next/image'
 import Logo from '../../../public/images/wobg.png'
@@ -10,6 +9,7 @@ export default function Header() {
     const [scrollY, setScrollY] = useState(0);
     const [menu, setMenu] = useState(false);
     const [windowWidth, setWindowWidth] = useState(0);
+    const storeURL = process.env.NEXT_PUBLIC_WOODEN_STORE_URL
 
     useEffect(() => {
         setWindowWidth(window.innerWidth)
@@ -34,6 +34,7 @@ export default function Header() {
                         <p onClick={()=>{setMenu(!menu);router.push('/')}}><i className="fa-solid fa-house"></i> Home</p>
                         <p onClick={()=>{setMenu(!menu);router.push('/trabalhos')}}><i className="fa-solid fa-chair"></i> Trabalhos</p>
                         <p onClick={()=>{setMenu(!menu);router.push('/sobre')}}><i className="fa-solid fa-address-card"></i> Sobre</p>
+                        {/* <p onClick={()=>{setMenu(!menu);window.open(storeURL, '_blank')}}><i className="fa-solid fa-store"></i> Loja</p> */}
                     </div>
                 </div>
                 <Image className={styles.imageLogo} onClick={()=>{router.push('/')}} src={Logo} alt="Logo Wooden" height={80} width={200}/>
@@ -44,6 +45,7 @@ export default function Header() {
                 <p onClick={()=>{router.push('/trabalhos')}}>Trabalhos</p>
                 <p onClick={()=>{router.push('/contato')}}>Contato</p>
                 <p onClick={()=>{router.push('/sobre')}}>Sobre</p>
+                {/* <p onClick={()=>window.open(storeURL, '_blank')}>Loja</p> */}
             </div>
         </>
     )
