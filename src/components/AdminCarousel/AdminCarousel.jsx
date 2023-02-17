@@ -130,7 +130,7 @@ export default function AdminCarousel ({carouselImages}) {
                 <div className={styles.carouselFileInput}>
                     <div className={styles.formFileInput}>
                         <form style={!image ? {width: '160px', height: '100px', display: 'flex', alignItems: 'center'} : {width: 'auto', height: 'auto'}}>
-                            {!image ? <label htmlFor="file-uploader">Selecione a imagem</label> : <img src={imageSrc} style={{height: '140px', width: 'auto'}} onClick={() => document.getElementById("file-uploader").click()} />}
+                            {!image ? <label htmlFor="file-uploader">Selecione a imagem</label> : <img src={imageSrc} style={{height: '13vh', width: 'auto'}} onClick={() => document.getElementById("file-uploader").click()} />}
                             <input type="file" id='file-uploader' style={{display: 'none'}} onChange={handleImage}/>
                         </form>
                     </div>

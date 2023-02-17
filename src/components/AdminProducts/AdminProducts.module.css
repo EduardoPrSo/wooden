@@ -235,3 +235,13 @@
     color: red;
     transition: .3s;
 }
+
+.carouselArrow{
+    font-size: 20px;
+    background: none;
+    border: none;
+}
+
+.carouselArrow:hover{
+    cursor: pointer;
+}

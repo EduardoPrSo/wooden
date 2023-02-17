@@ -20,9 +20,10 @@ export default function Home({carouselImages, products}) {
 }
 
 export const getServerSideProps = async () => {
-    const carouselImages = await fetchAPI(`api/carouselImages/getCarouselImages`);
-
-    const products = await fetchAPI('api/products/getMainPageProducts');
+    const [carouselImages, products] = await Promise.all([
+        fetchAPI(`api/carouselImages/getCarouselImages`), 
+        fetchAPI('api/products/getMainPageProducts')
+    ]);
 
     return {
         props: {

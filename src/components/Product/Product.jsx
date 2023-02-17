@@ -14,9 +14,9 @@ export default function Product({product}) {
 
     const renderCustomThumbs = () => {
         const thumbList = product.images.map((image, index) => (
-            <div key={index} style={windowWidth > 900 ? {display: 'flex', justifyContent: 'center'} : {display: 'flex', justifyContent: 'center', height: '5vh', width: '8vw'}}>
+            <div key={index}>
                 <img
-                    style={windowWidth > 900 ? { height: '10vh', width: 'auto'} : { height: '5vh', width: '8vw'}}
+                    style={windowWidth > 900 ? { height: '8vh', width: 'auto'} : { height: '5vh', width: '8vw'}}
                     src={image}
                 />
             </div>
@@ -25,11 +25,37 @@ export default function Product({product}) {
         return(thumbList)
     }
 
+    const renderArrowPrev = (onClickHandler, hasPrev, label) => {
+		return(
+			<button className={styles.carouselArrow} onClick={onClickHandler} disabled={!hasPrev} aria-label={label} style={{backgroundColor: 'orange', position: 'absolute', zIndex: '1000', top: '40%', left: '2%'}}>
+				<i className='fa-solid fa-chevron-left'></i>
+			</button>
+		)
+	}
+
+	const renderArrowNext = (onClickHandler, hasNext, label) => {
+		return(
+			<button className={styles.carouselArrow} onClick={onClickHandler} disabled={!hasNext} aria-label={label} style={{backgroundColor: 'orange', position: 'absolute', top: '40%', right: '2%'}}>
+				<i className='fa-solid fa-chevron-right'></i>
+			</button>
+		)
+	}
+
     return (
         <div className={styles.mainContainer}>
             <div className={styles.productContainer}>
                 <div className={styles.carouselContainer}>
-                    <Carousel className={styles.carouselStyle} style={{margin: 0}} showStatus={false} showArrows={false} autoPlay={false} showIndicators={windowWidth > 900 ? false : true} showThumbs={windowWidth > 900 ? true : false} renderThumbs={renderCustomThumbs}>
+                    <Carousel className={styles.carouselStyle} 
+                        style={{margin: 0}} 
+                        showStatus={false} 
+                        showArrows={false} 
+                        autoPlay={false} 
+                        showIndicators={windowWidth > 900 ? false : true} 
+                        showThumbs={windowWidth > 900 ? true : false} 
+                        renderThumbs={renderCustomThumbs}
+                        renderArrowPrev={renderArrowPrev}
+                        renderArrowNext={renderArrowNext}
+                    >
                         {product && product.images.map((product, index) => (
                             <div key={index} onClick={()=>setImageZoom(windowWidth > 900 && true)} style={{overflow: 'hidden', borderBottom: windowWidth > 900 ? '1px solid rgba(54, 54, 54, 0.349)' : '0', paddingBottom: '4%'}}>
                                 <img

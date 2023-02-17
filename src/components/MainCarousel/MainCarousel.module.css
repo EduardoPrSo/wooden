@@ -21,6 +21,20 @@
     height: 70vh;
 }
 
+.carouselArrow{
+    font-size: 30px;
+    background: none;
+    border: none;
+}
+
+.carouselArrow:disabled{
+    display: none;
+}
+
+.carouselArrow:hover{
+    cursor: pointer;
+}
+
 @media ( max-width: 900px ) {
     .carouselContainer{
         display: flex;

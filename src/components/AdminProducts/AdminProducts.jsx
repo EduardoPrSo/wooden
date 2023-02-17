@@ -155,6 +155,22 @@ export default function AdminProducts ({products}) {
         }
     };
 
+    const renderArrowPrev = (onClickHandler, hasPrev, label) => {
+		return(
+			<div className={styles.carouselArrow} onClick={onClickHandler} disabled aria-label={label} style={{color: 'orange', position: 'absolute', zIndex: '1000', top: '40%', left: '2%', display: !hasPrev ? 'none' : 'block'}}>
+				<i className='fa-solid fa-chevron-left'></i>
+			</div>
+		)
+	}
+
+	const renderArrowNext = (onClickHandler, hasNext, label) => {
+		return(
+			<div className={styles.carouselArrow} onClick={onClickHandler} disabled aria-label={label} style={{color: 'orange', position: 'absolute', top: '40%', right: '2%', display: !hasNext ? 'none' : 'block'}}>
+				<i className='fa-solid fa-chevron-right'></i>
+			</div>
+		)
+	}
+
     return (
         <div className={styles.productsContainer}>
             <h1>Produtos</h1>
@@ -172,7 +188,17 @@ export default function AdminProducts ({products}) {
                         <div key={index} className={styles.carouselItem}>
                             <form>
                                 <div>
-                                    <Carousel className={styles.carouselProductsAddArea} showDots={false} showStatus={false} showArrows={true} autoPlay={false} showThumbs={false} style={!productImagesCarousel ? {width: '160px', height: '100px', display: 'flex', alignItems: 'center'} : {width: 'auto', height: 'auto'}}>
+                                    <Carousel 
+                                        className={styles.carouselProductsAddArea} 
+                                        showIndicators={false} 
+                                        showStatus={false} 
+                                        showArrows={true} 
+                                        autoPlay={false} 
+                                        showThumbs={false} 
+                                        style={!productImagesCarousel ? {width: '160px', height: '100px', display: 'flex', alignItems: 'center'} : {width: 'auto', height: 'auto'}}
+                                        renderArrowPrev={renderArrowPrev}
+                                        renderArrowNext={renderArrowNext}
+                                    >
                                         {CarouselItems}
                                     </Carousel>
                                 </div>
