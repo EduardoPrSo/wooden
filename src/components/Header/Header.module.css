@@ -131,6 +131,7 @@
         padding-top: 10%;
         box-shadow: 5px 5px 5px #808080;
         transition: .5s;
+        z-index: 1000;
     }
 
     .dropdown p{

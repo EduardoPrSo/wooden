@@ -14,7 +14,7 @@ export default function MainCarousel({carouselImages}) {
 
 	const renderArrowPrev = (onClickHandler, hasPrev, label) => {
 		return(
-			<button className={styles.carouselArrow} onClick={onClickHandler} disabled={!hasPrev} aria-label={label} style={{color: 'orange', position: 'absolute', zIndex: '1000', top: '50%', left: '2%'}}>
+			<button className={styles.carouselArrow} onClick={onClickHandler} disabled={!hasPrev} aria-label={label} style={{color: 'orange', position: 'absolute', zIndex: '950', top: '50%', left: '2%'}}>
 				<i className='fa-solid fa-chevron-left'></i>
 			</button>
 		)
