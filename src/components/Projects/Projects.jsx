@@ -19,7 +19,7 @@ export default function Projects({productsData}){
 
     const productsDivisor = [];
     
-    const nProduts = windowWidth > 900 ? 9 : 10;
+    const nProduts = windowWidth > 900 ? 9 : 4;
 
     for (let i = 0; i < productsData.length; i += nProduts) {
        productsDivisor.push(productsData.slice(i, i + nProduts));
@@ -30,6 +30,7 @@ export default function Projects({productsData}){
             <div key={index} className={styles.product} onClick={()=>productRedirect(product._id)}>
                 <img className={styles.mainImage} src={product.images[0]} />
                 <div className={styles.imageDecoration}>
+                    <h1 className={styles.decorationTitle}>{product.title}</h1>
                     <img className={styles.decorationLogo} src="/images/wow.png" alt="" />
                 </div>
             </div>

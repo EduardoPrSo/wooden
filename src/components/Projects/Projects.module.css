@@ -66,6 +66,15 @@
     border-radius: 5px;
 }
 
+.decorationTitle{
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    color: white;
+    font-size: 1.2vw;
+    text-shadow: 1px 1px 1px black;
+}
+
 .decorationLogo{
     width: 2.5vw;
     position: absolute;
@@ -196,8 +205,8 @@
         align-items: center;
         justify-content: center;
         border-radius: 5px;
-        width: 35vw;
-        height: 10vh;
+        width: 60vw;
+        height: 20vh;
         margin-bottom: 5%;
         transition: .5s;
         overflow: hidden;
@@ -208,6 +217,16 @@
         width: 150%;
         height: auto;
         align-self: center;
+    }
+
+    .decorationTitle{
+        position: absolute;
+        top: 2px;
+        left: 5px;
+        color: white;
+        font-size: 3.5vw;
+        font-weight: 300;
+        text-shadow: 1px 1px 1px black;
     }
 
     .imageDecoration{
