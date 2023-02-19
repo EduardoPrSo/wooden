@@ -244,4 +244,12 @@
         bottom: 2px;
         left: 2px;
     }
+
+    .pageButtons{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        margin-top: 17%;
+    }
 }
