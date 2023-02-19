@@ -32,7 +32,7 @@ export default function Header() {
                     <p className={styles.dropdownIcon} onClick={()=> windowWidth < 900 && setMenu(!menu)}><i className="fa-solid fa-bars"></i></p>
                     <div className={styles.dropdown} style={windowWidth < 900 ? {transform: !menu ? 'translateX(-300%)' : 'translateX(-30%)', transition: 'transition: .3s'} : {}}>
                         <p onClick={()=>{setMenu(!menu);router.push('/')}}><i className="fa-solid fa-house"></i> Home</p>
-                        <p onClick={()=>{setMenu(!menu);router.push('/trabalhos')}}><i className="fa-solid fa-chair"></i> Trabalhos</p>
+                        <p onClick={()=>{setMenu(!menu);router.push('/projetos')}}><i className="fa-solid fa-chair"></i> Projetos</p>
                         <p onClick={()=>{setMenu(!menu);router.push('/sobre')}}><i className="fa-solid fa-address-card"></i> Sobre</p>
                         {/* <p onClick={()=>{setMenu(!menu);window.open(storeURL, '_blank')}}><i className="fa-solid fa-store"></i> Loja</p> */}
                     </div>
@@ -42,7 +42,7 @@ export default function Header() {
             </div>
             <div className={styles.options}>
                 <p onClick={()=>{router.push('/')}}>Home</p>
-                <p onClick={()=>{router.push('/trabalhos')}}>Trabalhos</p>
+                <p onClick={()=>{router.push('/projetos')}}>Projetos</p>
                 <p onClick={()=>{router.push('/contato')}}>Contato</p>
                 <p onClick={()=>{router.push('/sobre')}}>Sobre</p>
                 {/* <p onClick={()=>window.open(storeURL, '_blank')}>Loja</p> */}
