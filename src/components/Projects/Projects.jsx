@@ -11,7 +11,7 @@ export default function Projects({productsData}){
     const [showProductID, setShowProductID] = useState();
 
     const router = useRouter();
-    const { page = 1 } = router.query;
+    const { page } = router.query;
 
     useEffect(() => {
         setWindowWidth(window.innerWidth)
@@ -19,7 +19,7 @@ export default function Projects({productsData}){
 
     const productsDivisor = [];
     
-    const nProduts = windowWidth > 900 ? 9 : 12;
+    const nProduts = windowWidth > 900 ? 9 : 10;
 
     for (let i = 0; i < productsData.length; i += nProduts) {
        productsDivisor.push(productsData.slice(i, i + nProduts));
@@ -51,16 +51,19 @@ export default function Projects({productsData}){
     const PageButtons = ({ productsDivisor, page, styles }) => {
         if (productsDivisor.length > 1 && page == 1) {
             return (
-                <Link href={`/projetos?page=${parseInt(page) + 1}`} style={{textDecoration: 'none'}}>
-                    <button className={styles.productButton}>
-                        Próxima  
-                        <i className="fa-sharp fa-solid fa-chevron-right"></i>
-                    </button>
-                </Link>
+                <div className={styles.buttonContainer}>
+                    <Link href={`/projetos?page=${parseInt(page) + 1}`} style={{textDecoration: 'none'}}>
+                        <button className={styles.productButton}>
+                            Próxima  
+                            <i className="fa-sharp fa-solid fa-chevron-right"></i>
+                        </button>
+                    </Link>
+                </div>
             );
         }else if (page > 1 && page < productsDivisor.length) {
+            console.log(page)
             return (
-                <>
+                <div className={styles.buttonContainer}>
                     <Link href={`/projetos?page=${parseInt(page) - 1}`} style={{textDecoration: 'none'}}>
                         <button className={styles.productButton} style={{marginRight: '15px'}}>
                             <i className="fa-sharp fa-solid fa-chevron-left"></i>
@@ -73,16 +76,18 @@ export default function Projects({productsData}){
                             <i className="fa-sharp fa-solid fa-chevron-right"></i>
                         </button>
                     </Link>
-                </>
+                </div>
             );
         } else if (productsDivisor.length > 1 && page == productsDivisor.length){
             return (
-                <Link href={`/projetos?page=${parseInt(page) - 1}`} style={{textDecoration: 'none'}}>
-                    <button className={styles.productButton}>
-                        <i className="fa-sharp fa-solid fa-chevron-left"></i>
-                        Anterior  
-                    </button>
-                </Link>
+                <div className={styles.buttonContainer}>
+                    <Link href={`/projetos?page=${parseInt(page) - 1}`} style={{textDecoration: 'none'}}>
+                        <button className={styles.productButton}>
+                            <i className="fa-sharp fa-solid fa-chevron-left"></i>
+                            Anterior  
+                        </button>
+                    </Link>
+                </div>
             );
         }
     };
