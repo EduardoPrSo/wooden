@@ -34,6 +34,10 @@ export default function ProductsDisplay({ productsData }) {
                     <div className={styles.productImage} style={{transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(-200%)", transition: '1s' }}>
                         <div className={styles.imageCarousel}>
                             <img src={product.images[0]} style={{ width: '25vw', height: '70vh', boxShadow: '5px 5px 10px #808080'}} />
+                            <div className={styles.imageDecoration}>
+                                <h1 className={styles.decorationTitle}>{product.title}</h1>
+                                <img className={styles.decorationLogo} src="/images/wow.png" alt="" />
+                            </div>
                         </div>
                     </div>
                     <div className={styles.productInfo} style={{width: '30vw', height: '55vh', transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(+200%)", transition: '1s'  }}>
@@ -54,16 +58,23 @@ export default function ProductsDisplay({ productsData }) {
                     <div className={styles.productImage} style={{transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(+200%)", transition: '1s' }}>
                         <div className={styles.imageCarousel}>
                             <img src={product.images[0]} style={{ width: '25vw', height: '70vh', boxShadow: '5px 5px 10px #808080' }} />
+                            <div className={styles.imageDecoration}>
+                                <h1 className={styles.decorationTitle}>{product.title}</h1>
+                                <img className={styles.decorationLogo} src="/images/wow.png" alt="" />
+                            </div>
                         </div>
                     </div>
                 </>
             ) : (
                 <>
                     <div className={styles.productImage}>
-                        <div className={styles.imageCarousel}>
-                            <img onClick={()=>productRedirect(product._id)} src={product.images[0]} style={{ width: '100%', height: 'auto', boxShadow: '5px 5px 10px #808080' }} />
+                        <div className={styles.imageCarousel} onClick={()=>productRedirect(product._id)}>
+                            <img src={product.images[0]} style={{ width: '100%', height: '40vh', boxShadow: '5px 5px 10px #808080' }} />
+                            <div className={styles.imageDecoration}>
+                                <h1 className={styles.decorationTitle}>{product.title}</h1>
+                                <img className={styles.decorationLogo} src="/images/wow.png" alt="" />
+                            </div>
                         </div>
-                        <h2 style={{marginBottom: '5%'}}>{product.title}</h2>
                     </div>
                 </>
             )}

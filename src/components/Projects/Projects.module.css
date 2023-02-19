@@ -218,6 +218,14 @@
         height: auto;
         align-self: center;
     }
+    
+    .imageDecoration{
+        position: absolute;
+        width: 95%;
+        height: 95%;
+        border: 1px solid white;
+        border-radius: 5px;
+    }
 
     .decorationTitle{
         position: absolute;
@@ -227,14 +235,6 @@
         font-size: 3.5vw;
         font-weight: 300;
         text-shadow: 1px 1px 1px black;
-    }
-
-    .imageDecoration{
-        position: absolute;
-        width: 95%;
-        height: 95%;
-        border: 1px solid white;
-        border-radius: 5px;
     }
     
     .decorationLogo{

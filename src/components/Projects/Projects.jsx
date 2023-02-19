@@ -62,7 +62,6 @@ export default function Projects({productsData}){
                 </div>
             );
         }else if (page > 1 && page < productsDivisor.length) {
-            console.log(page)
             return (
                 <div className={styles.buttonContainer}>
                     <Link href={`/projetos?page=${parseInt(page) - 1}`} style={{textDecoration: 'none'}}>

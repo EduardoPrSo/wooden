@@ -65,6 +65,32 @@
     box-shadow: 5px 5px 10px #808080;
 }
 
+.imageDecoration{
+    position: absolute;
+    width: 95%;
+    height: 68vh;
+    border: 1px solid white;
+    border-radius: 5px;
+    bottom: -2.5%;
+}
+
+.decorationTitle{
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    color: white;
+    font-size: 1.2vw;
+    text-shadow: 1px 1px 1px black;
+}
+
+.decorationLogo{
+    width: 2.5vw;
+    position: absolute;
+    border: black;
+    bottom: 2px;
+    left: 2px;
+}
+
 .productInfo{
     display: flex;
     justify-content: center;
@@ -140,6 +166,34 @@
         width: 100%;
         overflow: inherit;
         border-radius: 5px;
+    }
+
+    .imageDecoration{
+        position: absolute;
+        width: 95%;
+        height: 38vh;
+        border: 1px solid white;
+        border-radius: 5px;
+        bottom: 2.3%;
+
+    }
+    
+    .decorationTitle{
+        position: absolute;
+        top: 2px;
+        left: 5px;
+        color: white;
+        font-size: 5vw;
+        font-weight: 300;
+        text-shadow: 1px 1px 1px black;
+    }
+    
+    .decorationLogo{
+        width: 10vw;
+        position: absolute;
+        border: black;
+        bottom: 2px;
+        left: 2px;
     }
 
     .imageCarousel{

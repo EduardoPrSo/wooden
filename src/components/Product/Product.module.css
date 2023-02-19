@@ -189,5 +189,7 @@
     .productInfo{
         display: flex;
         flex-direction: column;
+        width: 33%;
+        text-align: center;
     }
 }
