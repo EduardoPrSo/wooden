@@ -16,7 +16,7 @@
 
 .carouselImageDiv{
     width: auto;
-    height: 76vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,21 +28,31 @@
     position: absolute;
 }
 
-.carouselArrow{
+.carouselArrowPrev, .carouselArrowNext{
     font-size: 30px;
     background: none;
     border: none;
+    top: 45%;
 }
 
-.carouselArrow:disabled{
+.carouselArrowPrev:disabled, .carouselArrowNext:disabled{
     display: none;
 }
 
-.carouselArrow:hover{
+.carouselArrowPrev:hover, .carouselArrowNext:hover{
     cursor: pointer;
 }
 
 @media ( max-width: 900px ) {
+    .carouselContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30vh;
+        width: 100vw;
+        background-color: transparent;
+    } 
+
     .carouselContainer{
         display: flex;
         justify-content: center;
@@ -57,7 +67,7 @@
 
     .carouselImageDiv{
         width: 100%;
-        height: auto;
+        height: 30vh;
     }
     
     .carouselImage{

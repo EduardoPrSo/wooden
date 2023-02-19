@@ -234,7 +234,16 @@ export default function AdminProducts ({products}) {
             <div className={styles.carouselAdd}>
                 <form action="" encType="multipart/form-data">
                     <input type="file" id='product-image-uploader' style={{display: 'none'}} multiple onChange={handleImage}/>
-                    <Carousel className={styles.carouselProductsAddArea} showStatus={false} showArrows={true} autoPlay={false} showThumbs={false} style={!productImagesCarousel ? {width: '160px', height: '100px', display: 'flex', alignItems: 'center'} : {width: 'auto', height: 'auto'}}>
+                    <Carousel className={styles.carouselProductsAddArea} 
+                        showIndicators={false} 
+                        showStatus={false} 
+                        showArrows={true} 
+                        autoPlay={false} 
+                        showThumbs={false} 
+                        renderArrowPrev={renderArrowPrev} 
+                        renderArrowNext={renderArrowNext} 
+                        style={!productImagesCarousel ? {width: '160px', height: '100px', display: 'flex', alignItems: 'center'} : {width: 'auto', height: 'auto'}}
+                    >
                         {!productImagesCarousel ? <div className={styles.uploadImageBox}><label className={styles.uploadImageText} onClick={() => document.getElementById("product-image-uploader").click()}>Selecione a imagem</label></div> : productImagesCarousel}
                     </Carousel>
                     <div className={styles.centerProductsAddArea}>

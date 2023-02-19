@@ -17,7 +17,7 @@
 
 .options{
     width: 100vw;
-    height: 6vh;
+    height: 4vh;
     background-color: #F9F6F2;
     display: flex;
     justify-content: center;
@@ -31,6 +31,7 @@
     padding: 0 15px 0 15px;
     color: grey;
     transition: .3s;
+    margin-bottom: 1%;
 }
 
 .options p:hover{
