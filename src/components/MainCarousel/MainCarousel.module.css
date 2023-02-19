@@ -2,23 +2,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    height: auto;
     width: 100vw;
+    background-color: transparent;
+    position: relative;
 }
 
 .carouselStyle{
-    height: 70vh;
+    height: auto;
     width: 100%;
+    position: relative;
 }
 
 .carouselImageDiv{
-    width: 100%;
-    height: 70vh;
+    width: auto;
+    height: 76vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .carouselImage{
     width: 100%;
-    height: 70vh;
+    height: 85vh;
+    position: absolute;
 }
 
 .carouselArrow{
