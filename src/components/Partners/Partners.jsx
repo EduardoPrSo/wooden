@@ -11,7 +11,7 @@ export default function Partners() {
                 </div>
                 <div className={styles.itemContainer}>
                     <img src="/partners/braço.png" />
-                    <p>Braço Articulado</p>
+                    <p>Suporte Articulado</p>
                 </div>
                 <div className={styles.itemContainer}>
                     <img src="/partners/cabideiro.png" />
@@ -19,7 +19,7 @@ export default function Partners() {
                 </div>
                 <div className={styles.itemContainer}>
                     <img src="/partners/fechadura.png" />
-                    <p>Fechadura Manética</p>
+                    <p>Fechadura Eletrônica</p>
                 </div>
             </div>
         </div>
