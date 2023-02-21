@@ -47,14 +47,13 @@
     transition: .5s;
     overflow: hidden;
     position: relative;
+    background-color: #00000034;
 }
 
 .mainImage{
-    margin-bottom: 10px;
     width: 100%;
     height: auto;
     align-self: center;
-    border-radius: 5px;
     position: relative;
 }
 
@@ -86,6 +85,7 @@
 .product:hover{
     cursor: pointer;
     box-shadow: 5px 5px 20px #808080;
+    transform: scale(1.1);
     transition: .5s;
 }
 

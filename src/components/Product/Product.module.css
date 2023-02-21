@@ -144,6 +144,18 @@
     border-right: 10px solid red;
 }
 
+.carouselArrowPrev, .carouselArrowNext{
+    font-size: 30px;
+}
+
+.carouselArrowPrev:disabled, .carouselArrowNext:disabled{
+    display: none;
+}
+
+.carouselArrowPrev:hover, .carouselArrowNext:hover{
+    cursor: pointer;
+}
+
 @media ( max-width: 900px ) {
     .productContainer{
         flex-direction: column;

@@ -33,7 +33,7 @@ export default function ProductsDisplay({ productsData }) {
                 <>
                     <div className={styles.productImage} style={{transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(-200%)", transition: '1s' }}>
                         <div className={styles.imageCarousel}>
-                            <img src={product.images[0]} style={{ width: '25vw', height: '70vh', boxShadow: '5px 5px 10px #808080'}} />
+                            <img src={product.images[0]} style={{ width: '100%', height: '70vh', boxShadow: '5px 5px 10px #808080'}} />
                             <div className={styles.imageDecoration}>
                                 <h1 className={styles.decorationTitle}>{product.title}</h1>
                                 <img className={styles.decorationLogo} src="/images/wow.png" alt="" />
@@ -57,7 +57,7 @@ export default function ProductsDisplay({ productsData }) {
                     </div>
                     <div className={styles.productImage} style={{transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(+200%)", transition: '1s' }}>
                         <div className={styles.imageCarousel}>
-                            <img src={product.images[0]} style={{ width: '25vw', height: '70vh', boxShadow: '5px 5px 10px #808080' }} />
+                            <img src={product.images[0]} style={{ width: '100%', height: '70vh', boxShadow: '5px 5px 10px #808080' }} />
                             <div className={styles.imageDecoration}>
                                 <h1 className={styles.decorationTitle}>{product.title}</h1>
                                 <img className={styles.decorationLogo} src="/images/wow.png" alt="" />

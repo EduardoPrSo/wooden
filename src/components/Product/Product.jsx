@@ -27,7 +27,7 @@ export default function Product({product}) {
 
     const renderArrowPrev = (onClickHandler, hasPrev, label) => {
 		return(
-			<button className={styles.carouselArrow} onClick={onClickHandler} disabled={!hasPrev} aria-label={label} style={{backgroundColor: 'orange', position: 'absolute', zIndex: '1000', top: '40%', left: '2%'}}>
+			<button className={styles.carouselArrow} onClick={onClickHandler} disabled={!hasPrev} aria-label={label} style={{color: 'orange', position: 'absolute', zIndex: '1000', top: '45%', left: '2%'}}>
 				<i className='fa-solid fa-chevron-left'></i>
 			</button>
 		)
@@ -35,7 +35,7 @@ export default function Product({product}) {
 
 	const renderArrowNext = (onClickHandler, hasNext, label) => {
 		return(
-			<button className={styles.carouselArrow} onClick={onClickHandler} disabled={!hasNext} aria-label={label} style={{backgroundColor: 'orange', position: 'absolute', top: '40%', right: '2%'}}>
+			<button className={styles.carouselArrow} onClick={onClickHandler} disabled={!hasNext} aria-label={label} style={{color: 'orange', position: 'absolute', top: '45%', right: '2%'}}>
 				<i className='fa-solid fa-chevron-right'></i>
 			</button>
 		)
@@ -48,18 +48,17 @@ export default function Product({product}) {
                     <Carousel className={styles.carouselStyle} 
                         style={{margin: 0}} 
                         showStatus={false} 
-                        showArrows={false} 
-                        autoPlay={false} 
-                        showIndicators={windowWidth > 900 ? false : true} 
-                        showThumbs={windowWidth > 900 ? true : false} 
-                        renderThumbs={renderCustomThumbs}
                         renderArrowPrev={renderArrowPrev}
                         renderArrowNext={renderArrowNext}
+                        autoPlay={false} 
+                        showIndicators={false} 
+                        showThumbs={windowWidth > 900 ? true : false} 
+                        renderThumbs={renderCustomThumbs}
                     >
                         {product && product.images.map((product, index) => (
-                            <div key={index} onClick={()=>setImageZoom(windowWidth > 900 && true)} style={{overflow: 'hidden', borderBottom: windowWidth > 900 ? '1px solid rgba(54, 54, 54, 0.349)' : '0', paddingBottom: '4%'}}>
+                            <div key={index} onClick={()=>setImageZoom(windowWidth > 900 && true)} style={{height: '50vh', overflow: 'hidden', borderBottom: windowWidth > 900 ? '1px solid rgba(54, 54, 54, 0.349)' : '0', paddingBottom: '4%'}}>
                                 <img
-                                    style={{ height: '50vh', width: 'auto', margin: 0}}
+                                    style={{ height: 'auto', width: '100%', margin: 0, borderRadius: '5px', position: 'relative', top: '50%', transform: 'translateY(-50%)'}}
                                     src={product}
                                 />
                             </div>
@@ -89,7 +88,15 @@ export default function Product({product}) {
             </div>
             <div className={styles.imageZoom} style={!imageZoom ? {diplay: 'none'} : {display: 'flex', flexDirection: 'colunm'}}>
                 <i className={`fa-solid fa-xmark ${styles.imageZoomCloseButtonIcon}`} onClick={()=>setImageZoom(false)}></i>
-                <Carousel className={styles.carouselZoomStyle} style={{margin: 0}} showStatus={false} showArrows={false} autoPlay={false} showIndicators={false} renderThumbs={renderCustomThumbs}>
+                <Carousel className={styles.carouselZoomStyle} 
+                    style={{margin: 0}} 
+                    showStatus={false} 
+                    renderArrowPrev={renderArrowPrev}
+                    renderArrowNext={renderArrowNext}
+                    autoPlay={false} 
+                    showIndicators={false} 
+                    renderThumbs={renderCustomThumbs}
+                >
                     {product && product.images.map((product, index) => (
                         <div key={index} style={{borderBottom: '1px solid rgba(54, 54, 54, 0.349)', paddingBottom: '2%'}} onClick={()=>setImageZoom(true)}>
                             <img
