@@ -7,6 +7,7 @@ export default function ProductsDisplay({ productsData }) {
     const [windowWidth, setWindowWidth] = useState(0);
     const [windowHeight, setWindowHeight] = useState(0);
     const [scrollY, setScrollY] = useState(0);
+    const [scrollComplete, setScrollComplete] = useState(false)
 
     useEffect(() => {
         setWindowWidth(window.innerWidth)
@@ -16,6 +17,9 @@ export default function ProductsDisplay({ productsData }) {
     useEffect(() => {
         const handleScroll = () => {
             setScrollY(window.scrollY);
+            if (window.scrollY >= (500+((productsData.length*1.1)*(window.innerHeight/2)))) {
+                setScrollComplete(true)
+            }
         };
         window.addEventListener("scroll", handleScroll);
         return () => {
@@ -31,7 +35,7 @@ export default function ProductsDisplay({ productsData }) {
         <div key={index} className={styles.productDiv}>
             {windowWidth > 900 ? index % 2 === 0 ? (
                 <>
-                    <div className={styles.productImage} style={{transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(-200%)", transition: '1s' }}>
+                    <div className={styles.productImage} style={scrollComplete == false ? {transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(-200%)", transition: '1s' } : {transform: "translateX(0)", transition: '1s'}}>
                         <div className={styles.imageCarousel}>
                             <img src={product.images[0]} style={{ width: '100%', height: '70vh', boxShadow: '5px 5px 10px #808080'}} />
                             <div className={styles.imageDecoration}>
@@ -40,7 +44,7 @@ export default function ProductsDisplay({ productsData }) {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.productInfo} style={{width: '30vw', height: '55vh', transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(+200%)", transition: '1s'  }}>
+                    <div className={styles.productInfo} style={scrollComplete == false ? {width: '30vw', height: '55vh', transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(+200%)", transition: '1s'  } : {width: '30vw', height: '55vh', transform: "translateX(0)", transition: '1s'  }}>
                         <h1 style={{marginBottom: '5%'}}>{product.title}</h1>
                         <p style={{marginBottom: '5%', textAlign: 'justify'}}>{product.description}</p>
                         <button className={styles.productButton} onClick={()=>productRedirect(product._id)}>Saiba mais</button>
@@ -48,14 +52,14 @@ export default function ProductsDisplay({ productsData }) {
                 </>
             ) : (
                 <>
-                    <div className={styles.productInfo} style={{width: '30vw', height: '55vh', transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(-200%)", transition: '1s'  }}>
+                    <div className={styles.productInfo} style={scrollComplete == false ? {width: '30vw', height: '55vh', transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(-200%)", transition: '1s'  } : {width: '30vw', height: '55vh', transform: "translateX(0)", transition: '1s'  }}>
                         <h1 style={{textAlign: 'right', marginBottom: '5%'}}>{product.title}</h1>
                         <p style={{textAlign: 'right', marginBottom: '5%', textAlign: 'justify'}}>{product.description}</p>
                         <div style={{width: '100%', display: 'flex', justifyContent: 'right'}}>
                             <button className={styles.productButton} onClick={()=>productRedirect(product._id)}>Saiba mais</button>
                         </div>
                     </div>
-                    <div className={styles.productImage} style={{transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(+200%)", transition: '1s' }}>
+                    <div className={styles.productImage} style={scrollComplete == false ? {transform: scrollY > (500+((index*1.1)*(windowHeight/2))) ? "translateX(0)" : "translateX(+200%)", transition: '1s' } : {transform: "translateX(0)", transition: '1s'}}>
                         <div className={styles.imageCarousel}>
                             <img src={product.images[0]} style={{ width: '100%', height: '70vh', boxShadow: '5px 5px 10px #808080' }} />
                             <div className={styles.imageDecoration}>

@@ -13,7 +13,7 @@ export default function Home({carouselImages, products}) {
             <MainCarousel carouselImages={carouselImages}/>
             <ProductsDisplay productsData={products} />
             {/* <StoreBanner /> */}
-            <Partners />
+            {/* <Partners /> */}
             <Budget />
         </>
     )
